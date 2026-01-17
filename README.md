@@ -35,7 +35,8 @@ A modern, lightweight client-side router for Svelte 5 with **View Transition API
 ✅ **Dual-tree fallback** - Complex animations when needed\
 ✅ **Type-safe** - Full TypeScript support\
 ✅ **Direction-aware** - Different animations for back/forward\
-✅ **Image loader** - Progressive loading utility
+✅ **Image loader** - Progressive loading utility\
+✅ **Comprehensive tests** - 67+ passing tests for reliability
 
 ## Installation
 
@@ -438,6 +439,34 @@ const router = createRouter({
 	},
 })
 ```
+
+## Testing
+
+@mdsv/arc includes a comprehensive test suite with **67 passing tests** covering core functionality.
+
+### Running Tests
+
+```bash
+# Run all tests
+bun run test:run
+
+# Watch mode
+bun run test
+
+# With coverage
+bun run test:coverage
+```
+
+### Test Coverage
+
+- ✅ Route matching and parameter extraction
+- ✅ Path utilities and navigation
+- ✅ Component resolution (eager and lazy)
+- ✅ Route validation and sorting
+- ✅ Layout handling
+- ✅ Hook configuration
+
+For detailed testing documentation, see [docs/testing](./docs/src/pages/testing.astro).
 
 ## Troubleshooting
 

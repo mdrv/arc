@@ -20,13 +20,15 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 <!-- OPENSPEC:END -->
 
-- Always ask questions if in need of clarity even in the middle of session (unless specified otherwise).
+- Always ask questions when in need of clarity even in the middle of session (unless author explicitly stated not to ask questions).
 - Must always check NPM registry for the latest version of every package.
 - Must not build the project nor commit to Git without developer consent.
-- Must prefer inline styling (right on HTML tags) in Svelte components
+- Must use latest Panda CSS for complex styling. (guide: https://panda-css.com/docs/docs/installation/svelte)
+- Else, must prefer inline styling (right on HTML tags) in Svelte components.
 - Must utilize Bun and TypeScript on every possible area of code.
 - At the end of agent session, use dprint to format all files in repo.
 - All Markdown files (except README) that explains the project must be stored on `/docs` directory.
+- Must always utilize GitHub pages using Astro that lives on `/docs` directory.
 - On package.json scripts:
   - `b` → `build`
   - `d` → `dev`

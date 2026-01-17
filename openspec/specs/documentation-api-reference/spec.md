@@ -1,8 +1,11 @@
 # documentation-api-reference Specification
 
 ## Purpose
+
 TBD - created by archiving change add-docs-examples-and-api-page. Update Purpose after archive.
+
 ## Requirements
+
 ### Requirement: Comprehensive API Documentation Page
 
 The documentation site SHALL provide a complete API reference page at `/arc/api` documenting all public exports from the library.
@@ -71,4 +74,3 @@ The API page SHALL document utility exports including `Loader`, `searchParams`, 
 - **WHEN** user views the Utilities section
 - **THEN** they see `Loader` class documentation
 - **AND** they see how to track image loading progress
-

@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Testing - @mdsv/arc">
+	<div class="container">
+		<h1>Testing</h1>
+		
+		<p class="intro">
+			@mdsv/arc includes a comprehensive test suite to ensure reliability and prevent regressions.
+			This page documents the testing infrastructure and available tests.
+		</p>
+
+		<section>
+			<h2>Running Tests</h2>
+			
+			<p>The project uses Vitest as the test runner. You can run tests in several ways:</p>
+			
+			<pre><code># Run all tests once
+bun run test:run
+
+# Run tests in watch mode (re-runs on file changes)
+bun run test
+
+# Run tests with UI
+bun run test:ui
+
+# Run tests with coverage report
+bun run test:coverage</code></pre>
+		</section>
+
+		<section>
+			<h2>Test Infrastructure</h2>
+			
+			<p>The test suite is built with modern tooling:</p>
+			
+			<ul>
+				<li><strong>Vitest</strong> - Fast, modern test runner with native ESM support</li>
+				<li><strong>happy-dom</strong> - Lightweight DOM environment for browser API testing</li>
+				<li><strong>TypeScript</strong> - Full type safety in tests</li>
+				<li><strong>Coverage</strong> - Built-in coverage reporting with v8</li>
+			</ul>
+
+			<p>Test files are organized in the <code>tests/</code> directory:</p>
+			
+			<pre><code>tests/
+├── unit/              # Unit tests for individual functions
+├── integration/       # Integration tests (future)
+├── setup.ts          # Global test setup and mocks
+└── tsconfig.json     # TypeScript config for tests</code></pre>
+		</section>
+
+		<section>
+			<h2>Available Tests</h2>
+			
+			<p>The test suite currently includes <strong>67 passing tests</strong> across multiple categories:</p>
+
+			<h3>Infrastructure Tests (4 tests)</h3>
+			<p><code>tests/unit/sanity.test.ts</code></p>
+			<ul>
+				<li>Verifies test infrastructure is working</li>
+				<li>Checks DOM API availability</li>
+				<li>Confirms View Transition API mocks</li>
+			</ul>
+
+			<h3>Path Utilities (13 tests)</h3>
+			<p><code>tests/unit/path-utils.test.ts</code></p>
+			<ul>
+				<li>join() - Joining path segments</li>
+				<li>constructPath() - Parameter replacement in paths</li>
+				<li>Edge cases: trailing slashes, empty segments, root paths</li>
+			</ul>
+
+			<h3>Location Handling (7 tests)</h3>
+			<p><code>tests/unit/location.test.ts</code></p>
+			<ul>
+				<li>getLocation() - Extracting current location info</li>
+				<li>Pathname, search, hash, and state handling</li>
+				<li>SSR fallback behavior</li>
+			</ul>
+
+			<h3>Component Resolution (12 tests)</h3>
+			<p><code>tests/unit/component-resolution.test.ts</code></p>
+			<ul>
+				<li>isLazyImport() - Detecting lazy-loaded components</li>
+				<li>resolveRouteComponent() - Resolving eager and lazy components</li>
+				<li>resolveRouteComponents() - Batch component resolution</li>
+				<li>Component metadata handling</li>
+			</ul>
+
+			<h3>Route Matching (16 tests, 1 skipped)</h3>
+			<p><code>tests/unit/route-matching.test.ts</code></p>
+			<ul>
+				<li>Static route matching</li>
+				<li>Dynamic parameter extraction</li>
+				<li>Nested route traversal</li>
+				<li>Wildcard route handling</li>
+				<li>Layout collection from parent routes</li>
+				<li>Hook configuration</li>
+			</ul>
+
+			<h3>Route Validation (16 tests)</h3>
+			<p><code>tests/unit/route-validation.test.ts</code></p>
+			<ul>
+				<li>getRoutePaths() - Extracting all route paths</li>
+				<li>sortRoutes() - Route priority sorting (static > dynamic > wildcard)</li>
+				<li>validateRoutes() - Route configuration validation</li>
+				<li>Warning detection for conflicting routes</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Test Coverage</h2>
+			
+			<p>The following core functions have comprehensive test coverage:</p>
+			
+			<ul>
+				<li>✅ getLocation() - Location information retrieval</li>
+				<li>✅ join() - Path joining utility</li>
+				<li>✅ constructPath() - Parameter substitution</li>
+				<li>✅ isLazyImport() - Lazy import detection</li>
+				<li>✅ resolveRouteComponent() - Component resolution</li>
+				<li>✅ resolveRouteComponents() - Batch resolution</li>
+				<li>✅ matchRoute() - Route pattern matching</li>
+				<li>✅ getRoutePaths() - Path extraction</li>
+				<li>✅ sortRoutes() - Route priority sorting</li>
+				<li>✅ validateRoutes() - Configuration validation</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Writing Tests</h2>
+			
+			<p>When contributing to @mdsv/arc, follow these testing guidelines:</p>
+
+			<h3>Mock Components</h3>
+			<p>Use function-based mocks that match Svelte component structure:</p>
+			<pre><code>import type { Component } from 'svelte'
+
+const TestComponent = function() {} as unknown as Component</code></pre>
+
+			<h3>Browser API Mocks</h3>
+			<p>Browser APIs are mocked in <code>tests/setup.ts</code> and reset before each test:</p>
+			<ul>
+				<li><code>document.startViewTransition</code> - View Transition API</li>
+				<li><code>globalThis.location</code> - Location object</li>
+				<li><code>globalThis.history</code> - History API</li>
+			</ul>
+
+			<h3>Test Organization</h3>
+			<p>Group related tests using <code>describe</code> blocks:</p>
+			<pre><code>describe('matchRoute', () => {
+  describe('Static Routes', () => {
+    it('should match simple static route', () => {
+      // test implementation
+    })
+  })
+})</code></pre>
+		</section>
+
+		<section>
+			<h2>Continuous Integration</h2>
+			
+			<p>Tests run automatically on every push and pull request via GitHub Actions (when configured).
+			This ensures code quality and prevents regressions before merging changes.</p>
+		</section>
+
+		<section>
+			<h2>Known Limitations</h2>
+			
+			<ul>
+				<li><strong>Parentheses route grouping</strong> - Feature needs additional testing investigation</li>
+				<li><strong>Integration tests</strong> - Future enhancement for complete routing flows</li>
+				<li><strong>E2E tests</strong> - Not currently implemented (library-focused, not application-focused)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Contributing</h2>
+			
+			<p>When adding new features:</p>
+			<ol>
+				<li>Write tests first (TDD approach recommended)</li>
+				<li>Ensure all existing tests pass</li>
+				<li>Aim for >80% code coverage on new code</li>
+				<li>Update this documentation if adding new test categories</li>
+			</ol>
+		</section>
+	</div>
+</Layout>
+
+<style>
+	.container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	.intro {
+		font-size: 1.125rem;
+		color: #666;
+		margin-bottom: 2rem;
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+		border-bottom: 2px solid #eee;
+		padding-bottom: 0.5rem;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	pre {
+		background: #f5f5f5;
+		padding: 1rem;
+		border-radius: 4px;
+		overflow-x: auto;
+		margin: 1rem 0;
+	}
+
+	code {
+		background: #f5f5f5;
+		padding: 0.2rem 0.4rem;
+		border-radius: 3px;
+		font-family: 'Courier New', monospace;
+		font-size: 0.9em;
+	}
+
+	pre code {
+		background: none;
+		padding: 0;
+	}
+
+	ul, ol {
+		margin: 1rem 0;
+		padding-left: 2rem;
+	}
+
+	li {
+		margin: 0.5rem 0;
+	}
+
+	strong {
+		font-weight: 600;
+	}
+</style>

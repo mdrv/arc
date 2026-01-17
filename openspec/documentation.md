@@ -23,7 +23,9 @@ docs/
 │   ├── pages/              # Routes become HTML pages
 │   │   ├── index.astro     # Homepage
 │   │   ├── getting-started.astro
-│   │   └── examples.astro  # Live Svelte demos
+│   │   ├── examples.astro  # Live Svelte demos
+│   │   ├── api.astro       # API reference
+│   │   └── testing.astro   # Testing documentation
 │   ├── layouts/
 │   │   └── Layout.astro    # Shared layout with nav
 │   ├── components/
@@ -148,6 +150,14 @@ The dev server:
 1. Create `.astro` file in `src/pages/`
 2. Add to navigation in `Layout.astro`
 3. Page is accessible at `/arc/filename`
+
+**Current pages**:
+
+- `index.astro` - Homepage with overview
+- `getting-started.astro` - Installation and quick start
+- `examples.astro` - Live interactive demos
+- `api.astro` - API reference documentation
+- `testing.astro` - Test suite documentation (67+ passing tests)
 
 ### Adding Svelte Demos
 

@@ -1,8 +1,11 @@
 # documentation-examples Specification
 
 ## Purpose
+
 TBD - created by archiving change add-docs-examples-and-api-page. Update Purpose after archive.
+
 ## Requirements
+
 ### Requirement: Multiple Interactive Examples
 
 The documentation site SHALL provide multiple interactive examples demonstrating different router features through live Svelte components.
@@ -44,4 +47,3 @@ Examples SHALL be organized into logical categories (Basic, Transitions, Advance
 - **WHEN** user scrolls through the Examples page
 - **THEN** they see clear section headings for different categories
 - **AND** examples are grouped by complexity/topic
-

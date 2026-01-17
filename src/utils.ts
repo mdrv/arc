@@ -233,7 +233,7 @@ export function sortRoutes(routes: string[]): string[] {
  */
 function getRoutePriority(route: string): number {
 	if (route === '' || route === '/') return 1
-	if (route.startsWith('*')) return 4
+	if (route.includes('*')) return 4
 	if (route.includes(':')) return 3
 	return 2
 }
@@ -295,8 +295,7 @@ export function matchRoute(
 					layouts.push(routes.layout)
 				}
 
-				const resolvedPath = ((index ? '/' : '')
-					+ routeParts.join('/')) as keyof Routes
+				const resolvedPath = ('/' + routeParts.join('/')) as keyof Routes
 				match = routes[resolvedPath] as RouteComponent
 				break outer
 			} // Must match exactly

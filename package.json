@@ -1,15 +1,17 @@
 {
 	"name": "@mdsv/arc",
-	"version": "0.0.2",
+	"version": "0.0.5",
 	"description": "A modern, lightweight client-side router for Svelte 5 with View Transition API support and advanced animation control",
 	"type": "module",
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./src/index.ts",
+	"module": "./src/index.ts",
+	"types": "./src/index.ts",
+	"svelte": "./src/index.ts",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
+			"svelte": "./src/index.ts",
+			"types": "./src/index.ts",
+			"import": "./src/index.ts"
 		}
 	},
 	"files": [
@@ -25,6 +27,10 @@
 		"format": "dprint fmt",
 		"format:check": "dprint check",
 		"typecheck": "tsc --noEmit",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:run": "vitest run",
+		"test:coverage": "vitest run --coverage",
 		"prepublishOnly": "bun run format && bun run typecheck && bun run build"
 	},
 	"keywords": [
@@ -54,9 +60,12 @@
 	},
 	"devDependencies": {
 		"@types/bun": "latest",
+		"@vitest/coverage-v8": "^4.0.17",
 		"dprint": "latest",
+		"happy-dom": "^20.3.1",
 		"svelte": "^5.0.0",
 		"tsdown": "latest",
-		"typescript": "latest"
+		"typescript": "latest",
+		"vitest": "^4.0.17"
 	}
 }
