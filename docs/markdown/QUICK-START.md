@@ -5,11 +5,13 @@
 ```svelte
 <!-- App.svelte -->
 <script>
-  import { Router, generateTransitionCSS } from '@mdsv/arc'
+	import { generateTransitionCSS, Router } from '@mdsv/arc'
 </script>
 
 <svelte:head>
-  <style>{@html generateTransitionCSS()}</style>
+	<style>
+		{@html generateTransitionCSS()}
+	</style>
 </svelte:head>
 
 <Router />
@@ -20,10 +22,10 @@
 import { createRouter, transitionPresets } from '@mdsv/arc'
 
 export const { navigate } = createRouter({
-  routes: {
-    '/': Home,
-    '/about': About,
-  }
+	routes: {
+		'/': Home,
+		'/about': About,
+	},
 })
 
 // Use it
@@ -59,11 +61,11 @@ transitionPresets.none()
 
 // CUSTOM - Full control
 transitionPresets.custom({
-  name: 'my-transition',
-  direction: 'forward',
-  classes: ['my-class'],
-  onTransitionStart: (t) => console.log('start'),
-  onTransitionEnd: (t) => console.log('end')
+	name: 'my-transition',
+	direction: 'forward',
+	classes: ['my-class'],
+	onTransitionStart: (t) => console.log('start'),
+	onTransitionEnd: (t) => console.log('end'),
 })
 ```
 
@@ -75,11 +77,11 @@ transitionPresets.custom({
 
 ```ts
 const { navigate } = createRouter({
-  routes: {
-    '/': Home,
-    '/about': About,
-    '/contact': Contact,
-  }
+	routes: {
+		'/': Home,
+		'/about': About,
+		'/contact': Contact,
+	},
 })
 
 // All pages get default browser transition
@@ -90,25 +92,25 @@ navigate('/about')
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/': Home,
-    
-    '/products': {
-      transition: transitionPresets.slide(),
-      '/:id': ProductDetail,
-    },
-    
-    '/blog': {
-      transition: transitionPresets.fade(),
-      '/:slug': BlogPost,
-    },
-    
-    '/app': {
-      transition: transitionPresets.material(),
-      layout: DashboardLayout,
-      '/dashboard': Dashboard,
-    }
-  }
+	routes: {
+		'/': Home,
+
+		'/products': {
+			transition: transitionPresets.slide(),
+			'/:id': ProductDetail,
+		},
+
+		'/blog': {
+			transition: transitionPresets.fade(),
+			'/:slug': BlogPost,
+		},
+
+		'/app': {
+			transition: transitionPresets.material(),
+			layout: DashboardLayout,
+			'/dashboard': Dashboard,
+		},
+	},
 })
 ```
 
@@ -116,28 +118,28 @@ const router = createRouter({
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/gallery': {
-      hooks: {
-        duringLoad: async () => {
-          // Preload images
-          await loadImages()
-        },
-        duringRender: async ({ transition }) => {
-          if (!transition) {
-            // Custom GSAP animation
-            await animateWithGSAP()
-          }
-        }
-      },
-      '/:id': GalleryItem,
-    }
-  }
+	routes: {
+		'/gallery': {
+			hooks: {
+				duringLoad: async () => {
+					// Preload images
+					await loadImages()
+				},
+				duringRender: async ({ transition }) => {
+					if (!transition) {
+						// Custom GSAP animation
+						await animateWithGSAP()
+					}
+				},
+			},
+			'/:id': GalleryItem,
+		},
+	},
 })
 
 // Use dual-tree for this route
 navigate('/gallery/123', {
-  transition: { forceDualTree: true }
+	transition: { forceDualTree: true },
 })
 ```
 
@@ -254,25 +256,25 @@ hooks: {
 
 ```svelte
 <script>
-  import { viewTransitionName } from '@mdsv/arc'
+	import { viewTransitionName } from '@mdsv/arc'
 </script>
 
 <!-- This element morphs between pages -->
-<img use:viewTransitionName="hero" src={image} alt="Hero" />
+<img use:viewTransitionName='hero' src={image} alt='Hero' />
 ```
 
 ### Tip 2: Direction Detection
 
 ```ts
 // Automatic!
-navigate('/next')   // Detects "forward"
-navigate(-1)        // Detects "back"
+navigate('/next') // Detects "forward"
+navigate(-1) // Detects "back"
 
 // Manual override
 navigate('/page', {
-  transition: {
-    direction: 'back'  // Force back animation
-  }
+	transition: {
+		direction: 'back', // Force back animation
+	},
 })
 ```
 
@@ -280,8 +282,8 @@ navigate('/page', {
 
 ```svelte
 <!-- Via data attribute -->
-<a href="/products" data-transition="slide">
-  Products
+<a href='/products' data-transition='slide'>
+	Products
 </a>
 
 <!-- Will automatically use slide transition -->
@@ -290,9 +292,9 @@ navigate('/page', {
 ### Tip 4: Conditional Transitions
 
 ```ts
-const transition = user.prefersReducedMotion 
-  ? transitionPresets.none()
-  : transitionPresets.material()
+const transition = user.prefersReducedMotion
+	? transitionPresets.none()
+	: transitionPresets.material()
 
 navigate('/page', { transition })
 ```
@@ -301,14 +303,14 @@ navigate('/page', { transition })
 
 ```ts
 navigate('/page', {
-  transition: {
-    onTransitionStart: (t) => {
-      console.log('Transition started:', t)
-    },
-    onTransitionEnd: (t) => {
-      console.log('Transition ended:', t)
-    }
-  }
+	transition: {
+		onTransitionStart: (t) => {
+			console.log('Transition started:', t)
+		},
+		onTransitionEnd: (t) => {
+			console.log('Transition ended:', t)
+		},
+	},
 })
 ```
 
@@ -344,7 +346,7 @@ console.log(supportsViewTransitions) // true/false
 
 ```ts
 navigate('/page', {
-  transition: transitionPresets.none()
+	transition: transitionPresets.none(),
 })
 ```
 

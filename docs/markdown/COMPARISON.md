@@ -42,19 +42,19 @@
 
 ## Feature Matrix
 
-| Feature | @mdsv/arc (This) | SvelteKit | TanStack Router | React Router | Vue Router |
-|---------|-------------|-----------|-----------------|--------------|------------|
-| **View Transition API** | ✅ Native | ⚠️ Experimental | ❌ | ❌ | ❌ |
-| **Client-side only** | ✅ | ❌ (Full-stack) | ❌ (Full-stack) | ❌ (Can do SSR) | ❌ (Can do SSR) |
-| **Nested layouts** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Type safety** | ✅ Strong | ✅ Strong | ✅ Strong | ⚠️ Basic | ⚠️ Basic |
-| **Lazy loading** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Hooks system** | ✅ 4 phases | ✅ Multiple | ✅ Multiple | ⚠️ Limited | ⚠️ Limited |
-| **Animation control** | ✅ **Maximum** | ⚠️ Basic | ❌ | ❌ | ⚠️ Basic |
-| **Dual-tree system** | ✅ Unique | ❌ | ❌ | ❌ | ❌ |
-| **Bundle size** | ~8KB | ~200KB+ | ~15KB | ~12KB | ~10KB |
-| **Learning curve** | Medium | High | Medium | Low | Low |
-| **Framework** | Svelte 5 only | Svelte only | Framework-agnostic | React only | Vue only |
+| Feature                 | @mdsv/arc (This) | SvelteKit       | TanStack Router    | React Router    | Vue Router      |
+| ----------------------- | ---------------- | --------------- | ------------------ | --------------- | --------------- |
+| **View Transition API** | ✅ Native        | ⚠️ Experimental  | ❌                 | ❌              | ❌              |
+| **Client-side only**    | ✅               | ❌ (Full-stack) | ❌ (Full-stack)    | ❌ (Can do SSR) | ❌ (Can do SSR) |
+| **Nested layouts**      | ✅               | ✅              | ✅                 | ✅              | ✅              |
+| **Type safety**         | ✅ Strong        | ✅ Strong       | ✅ Strong          | ⚠️ Basic         | ⚠️ Basic         |
+| **Lazy loading**        | ✅               | ✅              | ✅                 | ✅              | ✅              |
+| **Hooks system**        | ✅ 4 phases      | ✅ Multiple     | ✅ Multiple        | ⚠️ Limited       | ⚠️ Limited       |
+| **Animation control**   | ✅ **Maximum**   | ⚠️ Basic         | ❌                 | ❌              | ⚠️ Basic         |
+| **Dual-tree system**    | ✅ Unique        | ❌              | ❌                 | ❌              | ❌              |
+| **Bundle size**         | ~8KB             | ~200KB+         | ~15KB              | ~12KB           | ~10KB           |
+| **Learning curve**      | Medium           | High            | Medium             | Low             | Low             |
+| **Framework**           | Svelte 5 only    | Svelte only     | Framework-agnostic | React only      | Vue only        |
 
 ---
 
@@ -63,6 +63,7 @@
 ### vs SvelteKit
 
 **SvelteKit:**
+
 - Full-stack framework (SSR, SSG, API routes)
 - File-based routing
 - Server-side rendering
@@ -70,6 +71,7 @@
 - Great for complex apps with server needs
 
 **@mdsv/arc:**
+
 - Client-side only
 - Configuration-based routing
 - View Transition API native support
@@ -77,6 +79,7 @@
 - Great for SPAs without server needs
 
 **When to choose @mdsv/arc:**
+
 - Building a client-side SPA
 - Don't need SSR/SSG
 - Want smaller bundle
@@ -84,6 +87,7 @@
 - Want maximum control
 
 **When to choose SvelteKit:**
+
 - Need server-side rendering
 - Want file-based routing
 - Building full-stack app
@@ -95,6 +99,7 @@
 ### vs TanStack Router
 
 **TanStack Router:**
+
 - Framework-agnostic
 - Very type-safe
 - Advanced caching
@@ -102,6 +107,7 @@
 - No View Transitions
 
 **@mdsv/arc:**
+
 - Svelte 5 specific
 - Type-safe
 - View Transition API
@@ -109,12 +115,14 @@
 - Simpler API
 
 **When to choose @mdsv/arc:**
+
 - Using Svelte 5
 - Want View Transitions
 - Need animation control
 - Prefer simpler API
 
 **When to choose TanStack:**
+
 - Need framework flexibility
 - Want advanced caching
 - Building full-stack
@@ -125,6 +133,7 @@
 ### vs React Router / Vue Router
 
 **React/Vue Router:**
+
 - Battle-tested
 - Huge ecosystem
 - Well-documented
@@ -132,6 +141,7 @@
 - Basic animation support
 
 **@mdsv/arc:**
+
 - Modern API
 - View Transitions native
 - Maximum animation control
@@ -139,12 +149,14 @@
 - Svelte 5 specific
 
 **When to choose @mdsv/arc:**
+
 - Using Svelte (obviously!)
 - Want modern transitions
 - Need animation control
 - Prefer smaller bundle
 
 **When to choose React/Vue Router:**
+
 - Using React/Vue
 - Want massive ecosystem
 - Need battle-tested solution
@@ -160,7 +172,7 @@ No other router has this level of integration:
 ```ts
 // Automatic, native transitions
 navigate('/page', {
-  transition: transitionPresets.material()
+	transition: transitionPresets.material(),
 })
 ```
 
@@ -170,7 +182,7 @@ For complex animations when you need full control:
 
 ```ts
 navigate('/complex', {
-  transition: { forceDualTree: true }
+	transition: { forceDualTree: true },
 })
 ```
 
@@ -188,8 +200,8 @@ afterRender → Analytics, cleanup
 Automatic forward/back detection:
 
 ```ts
-navigate('/next')  // Forward animation
-navigate(-1)       // Back animation
+navigate('/next') // Forward animation
+navigate(-1) // Back animation
 ```
 
 ### 5. **Element-Specific Transitions**
@@ -197,7 +209,7 @@ navigate(-1)       // Back animation
 Shared element transitions:
 
 ```svelte
-<img use:viewTransitionName="hero" />
+<img use:viewTransitionName='hero' />
 ```
 
 ### 6. **Built-in Image Loader**
@@ -205,7 +217,7 @@ Shared element transitions:
 Progressive image loading with progress:
 
 ```svelte
-<img data-src="/image.jpg" use:loader.load />
+<img data-src='/image.jpg' use:loader.load />
 ```
 
 ---
@@ -225,6 +237,7 @@ SvelteKit:    ~200KB+  ███████████████████
 ### Runtime Performance
 
 **Page Transition Speed:**
+
 1. **@mdsv/arc w/ View Transitions**: ⚡ Fastest (native GPU)
 2. **@mdsv/arc w/ dual-tree**: ⚡⚡ Fast (optimized JS)
 3. **SvelteKit**: ⚡⚡ Fast
@@ -273,6 +286,7 @@ SvelteKit:    ~200KB+  ███████████████████
 ## Summary
 
 **Choose @mdsv/arc when:**
+
 - ✅ Building modern SPA
 - ✅ Need amazing transitions
 - ✅ Want maximum control
@@ -281,6 +295,7 @@ SvelteKit:    ~200KB+  ███████████████████
 - ✅ Don't need SSR
 
 **Choose something else when:**
+
 - ❌ Need SSR/SSG → SvelteKit
 - ❌ Using React → React Router
 - ❌ Using Vue → Vue Router

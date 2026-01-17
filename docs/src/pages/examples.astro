@@ -1,27 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import DirectionDemo from '../components/DirectionDemo.svelte'
+import DynamicParamsDemo from '../components/DynamicParamsDemo.svelte'
+import NestedRoutesDemo from '../components/NestedRoutesDemo.svelte'
 import RouterDemo from '../components/RouterDemo.svelte'
+import TransitionDemo from '../components/TransitionDemo.svelte'
+import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Examples - @mdsv/arc">
+<Layout title='Examples - @mdsv/arc'>
 	<h1>Live Examples</h1>
 	<p>
-		Interact with these live examples to see @mdsv/arc in action. All demos use actual Svelte 5 components with the router.
+		Interact with these live examples to see @mdsv/arc in action. All demos use
+		actual Svelte 5 components with the router.
 	</p>
 
-	<section>
-		<h2>Basic Router Demo</h2>
-		<p>
-			This example shows a simple router with three pages and fade transitions.
-		</p>
-		<div class="demo-container">
-			<RouterDemo client:load />
-		</div>
-	</section>
+	<h2 class='category-heading'>Basic</h2>
 
 	<section>
-		<h2>Code Example</h2>
-		<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
+		<h3>Basic Router Demo</h3>
+		<p>
+			This example shows a simple router with three pages and fade transitions.
+			Click the buttons to navigate between pages and see smooth transitions
+			powered by the View Transition API.
+		</p>
+		<div class='demo-container'>
+			<RouterDemo client:load />
+		</div>
+		<details>
+			<summary>Show code</summary>
+			<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
 
 const { navigate, route } = createRouter({
   routes: {
@@ -32,14 +39,196 @@ const { navigate, route } = createRouter({
 })
 
 // Navigate with transition
-navigate('/about', {
-  transition: transitionPresets.fade()
+function handleNavigate(path) {
+  navigate(path, {
+    transition: transitionPresets.fade()
+  })
+}`}</code></pre>
+		</details>
+	</section>
+
+	<h2 class='category-heading'>Transitions</h2>
+
+	<section>
+		<h3>Transition Presets</h3>
+		<p>
+			Explore different transition types: fade, slide, scale, and material. Each
+			preset provides a different animation effect. Select a transition type
+			from the dropdown and navigate between pages to see how it looks.
+		</p>
+		<div class='demo-container'>
+			<TransitionDemo client:load />
+		</div>
+		<details>
+			<summary>Show code</summary>
+			<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/a': PageA,
+    '/b': PageB,
+  }
+})
+
+// Use different transition presets
+const transitions = {
+  fade: transitionPresets.fade(),
+  slide: transitionPresets.slide(),
+  scale: transitionPresets.scale(),
+  material: transitionPresets.material(),
+}
+
+navigate('/b', {
+  transition: transitions.slide
 })`}</code></pre>
+		</details>
+	</section>
+
+	<section>
+		<h3>Direction-Aware Transitions</h3>
+		<p>
+			This example shows how to detect navigation direction (forward/backward)
+			and apply different transition effects. Navigate through the steps to see
+			how the slide direction changes based on your movement.
+		</p>
+		<div class='demo-container'>
+			<DirectionDemo client:load />
+		</div>
+		<details>
+			<summary>Show code</summary>
+			<pre><code>{`import { createRouter, detectNavigationDirection, transitionPresets } from '@mdsv/arc'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/step1': Step1,
+    '/step2': Step2,
+    '/step3': Step3,
+  }
+})
+
+function handleNavigate(path) {
+  const direction = detectNavigationDirection(route.pathname, path)
+  
+  navigate(path, {
+    transition: direction === 'forward' 
+      ? transitionPresets.slide({ direction: 'left' })
+      : transitionPresets.slide({ direction: 'right' }),
+  })
+}`}</code></pre>
+		</details>
+	</section>
+
+	<h2 class='category-heading'>Advanced</h2>
+
+	<section>
+		<h3>Nested Routes with Layouts</h3>
+		<p>
+			Demonstrate nested routing where layout components persist across route
+			changes. Notice how the sidebar remains visible while the content area
+			updates. This is useful for building apps with consistent navigation or
+			sidebars.
+		</p>
+		<div class='demo-container'>
+			<NestedRoutesDemo client:load />
+		</div>
+		<details>
+			<summary>Show code</summary>
+			<pre><code>{`import { createRouter } from '@mdsv/arc'
+import Router from '@mdsv/arc/router.svelte'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/': Layout,
+    '/dashboard': [Layout, Dashboard],
+    '/profile': [Layout, Profile],
+    '/settings': [Layout, Settings],
+  }
+})
+
+// Layout.svelte - wraps child routes
+<div class="layout">
+  <div class="sidebar">Persistent sidebar</div>
+  <div class="content">
+    <Router /> <!-- Child route renders here -->
+  </div>
+</div>`}</code></pre>
+		</details>
+	</section>
+
+	<section>
+		<h3>Dynamic Route Parameters</h3>
+		<p>
+			Learn how to use dynamic route parameters to build detail pages. The
+			router extracts parameters from the URL and passes them to your
+			components. Try clicking different user/product buttons to see the params
+			change.
+		</p>
+		<div class='demo-container'>
+			<DynamicParamsDemo client:load />
+		</div>
+		<details>
+			<summary>Show code</summary>
+			<pre><code>{`import { createRouter } from '@mdsv/arc'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/': UserList,
+    '/user/:id': UserDetail,
+    '/product/:category/:id': ProductDetail,
+  }
+})
+
+// UserDetail.svelte - receives params as props
+<script>
+  let { params } = $props() // { id: '123' }
+</script>
+
+<p>User ID: {params.id}</p>
+
+// Navigate with params
+navigate('/user/456')`}</code></pre>
+		</details>
 	</section>
 </Layout>
 
 <style>
-	section {
-		margin: 3rem 0;
-	}
+section {
+	margin: 2.5rem 0;
+}
+
+.category-heading {
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #ff3e00;
+	color: #ff3e00;
+}
+
+details {
+	margin-top: 1rem;
+	padding: 1rem;
+	background: #0f0f0f;
+	border-radius: 0.5rem;
+}
+
+summary {
+	cursor: pointer;
+	font-weight: 600;
+	color: #ff3e00;
+	user-select: none;
+}
+
+summary:hover {
+	opacity: 0.8;
+}
+
+pre {
+	margin-top: 1rem;
+	overflow-x: auto;
+}
+
+code {
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
 </style>

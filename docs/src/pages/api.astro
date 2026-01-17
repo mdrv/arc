@@ -1,0 +1,513 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title='API Reference - @mdsv/arc'>
+	<h1>API Reference</h1>
+	<p>
+		Complete API documentation for @mdsv/arc. All public exports and their
+		usage.
+	</p>
+
+	<nav class='api-nav'>
+		<a href='#core-router'>Core Router</a>
+		<a href='#navigation'>Navigation</a>
+		<a href='#view-transitions'>View Transitions</a>
+		<a href='#utilities'>Utilities</a>
+		<a href='#types'>Types</a>
+	</nav>
+
+	<section id='core-router'>
+		<h2>Core Router API</h2>
+
+		<article>
+			<h3><code>createRouter(config)</code></h3>
+			<p>Creates a new router instance with the given configuration.</p>
+
+			<h4>Parameters</h4>
+			<ul>
+				<li>
+					<code>config.routes</code> - Route configuration object mapping paths
+					to components
+				</li>
+				<li>
+					<code>config.hooks</code> (optional) - Navigation lifecycle hooks
+				</li>
+			</ul>
+
+			<h4>Returns</h4>
+			<p>Returns a <code>RouterApi</code> object with:</p>
+			<ul>
+				<li><code>navigate(path, options?)</code> - Navigate to a new route</li>
+				<li>
+					<code>route</code> - Reactive route state (pathname, params, etc.)
+				</li>
+			</ul>
+
+			<h4>Example</h4>
+			<pre><code>{`import { createRouter } from '@mdsv/arc'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/': Home,
+    '/about': About,
+    '/user/:id': UserDetail,
+  },
+  hooks: {
+    before: (to, from) => {
+      console.log('Navigating from', from, 'to', to)
+      return true // Return false to cancel navigation
+    }
+  }
+})`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>Router</code></h3>
+			<p>Component that renders the active route. Used for nested routing.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import Router from '@mdsv/arc/router.svelte'
+
+<div class="layout">
+  <nav><!-- Navigation --></nav>
+  <main>
+    <Router /> <!-- Active route renders here -->
+  </main>
+</div>`}</code></pre>
+		</article>
+	</section>
+
+	<section id='navigation'>
+		<h2>Navigation</h2>
+
+		<article>
+			<h3><code>navigate(path, options?)</code></h3>
+			<p>Programmatically navigate to a route.</p>
+
+			<h4>Parameters</h4>
+			<ul>
+				<li><code>path</code> - Target route path</li>
+				<li>
+					<code>options.transition</code> (optional) - View transition
+					configuration
+				</li>
+				<li>
+					<code>options.replace</code> (optional) - Replace history instead of
+					push
+				</li>
+			</ul>
+
+			<h4>Example</h4>
+			<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
+
+const { navigate } = createRouter({ routes })
+
+// Simple navigation
+navigate('/about')
+
+// With transition
+navigate('/profile', {
+  transition: transitionPresets.fade()
+})
+
+// Replace history
+navigate('/login', { replace: true })`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>isActiveLink(path)</code></h3>
+			<p>Check if a path matches the current route.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { isActiveLink } from '@mdsv/arc'
+
+<a href="/about" class:active={isActiveLink('/about')}>
+  About
+</a>`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>route</code></h3>
+			<p>Reactive state object containing current route information.</p>
+
+			<h4>Properties</h4>
+			<ul>
+				<li><code>route.pathname</code> - Current path</li>
+				<li><code>route.params</code> - Route parameters</li>
+				<li><code>route.search</code> - Query string</li>
+			</ul>
+
+			<h4>Example</h4>
+			<pre><code>{`const { route } = createRouter({ routes })
+
+<p>Current path: {route.pathname}</p>
+<p>User ID: {route.params?.id}</p>`}</code></pre>
+		</article>
+	</section>
+
+	<section id='view-transitions'>
+		<h2>View Transitions API</h2>
+
+		<article>
+			<h3><code>transitionPresets</code></h3>
+			<p>Pre-configured transition effects for common use cases.</p>
+
+			<h4>Available Presets</h4>
+			<ul>
+				<li><code>transitionPresets.fade()</code> - Simple opacity fade</li>
+				<li>
+					<code>transitionPresets.slide(direction?)</code> - Slide animation
+					(left, right, up, down)
+				</li>
+				<li><code>transitionPresets.scale()</code> - Scale up/down</li>
+				<li>
+					<code>transitionPresets.material()</code> - Material Design-style
+					transition
+				</li>
+			</ul>
+
+			<h4>Example</h4>
+			<pre><code>{`import { transitionPresets } from '@mdsv/arc'
+
+navigate('/next', {
+  transition: transitionPresets.slide({ direction: 'left' })
+})
+
+// Custom duration
+navigate('/page', {
+  transition: {
+    ...transitionPresets.fade(),
+    duration: 500
+  }
+})`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>generateTransitionCSS(config)</code></h3>
+			<p>Generate CSS for custom view transitions.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { generateTransitionCSS } from '@mdsv/arc'
+
+const css = generateTransitionCSS({
+  duration: 300,
+  easing: 'ease-in-out',
+  name: 'custom-transition'
+})`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>detectNavigationDirection(from, to, patterns?)</code></h3>
+			<p>Detect if navigation is forward or backward.</p>
+
+			<h4>Returns</h4>
+			<p>
+				Returns <code>'forward'</code>, <code>'back'</code>, or <code
+				>'unknown'</code>
+			</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { detectNavigationDirection } from '@mdsv/arc'
+
+const direction = detectNavigationDirection('/step1', '/step2')
+// 'forward'
+
+const direction2 = detectNavigationDirection('/step3', '/step1')
+// 'back'`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>supportsViewTransitions()</code></h3>
+			<p>Check if browser supports View Transition API.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { supportsViewTransitions } from '@mdsv/arc'
+
+if (supportsViewTransitions()) {
+  // Use transitions
+} else {
+  // Fallback
+}`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>startViewTransition(callback)</code></h3>
+			<p>Manually start a view transition.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { startViewTransition } from '@mdsv/arc'
+
+await startViewTransition(() => {
+  // Update DOM
+  element.classList.toggle('active')
+})`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>viewTransitionName(name)</code></h3>
+			<p>Helper for setting view-transition-name CSS property.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { viewTransitionName } from '@mdsv/arc'
+
+<div style={viewTransitionName('hero-image')}>
+  <img src="hero.jpg" alt="Hero" />
+</div>`}</code></pre>
+		</article>
+	</section>
+
+	<section id='utilities'>
+		<h2>Utilities</h2>
+
+		<article>
+			<h3><code>Loader</code></h3>
+			<p>Component for displaying loading states during route transitions.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { Loader } from '@mdsv/arc'
+
+<Loader>
+  {#snippet loading()}
+    <div>Loading...</div>
+  {/snippet}
+  
+  {#snippet error(err)}
+    <div>Error: {err.message}</div>
+  {/snippet}
+  
+  {#snippet children()}
+    <Router />
+  {/snippet}
+</Loader>`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>searchParams</code></h3>
+			<p>Reactive proxy for reading and writing URL search parameters.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { searchParams } from '@mdsv/arc'
+
+// Read parameter
+const page = searchParams.page // '1'
+
+// Write parameter
+searchParams.page = '2' // Updates URL to ?page=2
+
+// Delete parameter
+delete searchParams.page`}</code></pre>
+		</article>
+
+		<article>
+			<h3><code>Status</code></h3>
+			<p>Enum for loader status values.</p>
+
+			<h4>Values</h4>
+			<ul>
+				<li><code>Status.IDLE</code></li>
+				<li><code>Status.LOADING</code></li>
+				<li><code>Status.SUCCESS</code></li>
+				<li><code>Status.ERROR</code></li>
+			</ul>
+		</article>
+
+		<article>
+			<h3><code>countProgress(promises)</code></h3>
+			<p>Track loading progress across multiple promises.</p>
+
+			<h4>Example</h4>
+			<pre><code>{`import { countProgress } from '@mdsv/arc'
+
+const promises = [
+  fetch('/api/users'),
+  fetch('/api/posts'),
+  fetch('/api/comments'),
+]
+
+const progress = countProgress(promises)
+// progress.loaded = 0, progress.total = 3
+
+// As promises resolve:
+// progress.loaded = 1, progress.total = 3
+// progress.loaded = 2, progress.total = 3
+// progress.loaded = 3, progress.total = 3`}</code></pre>
+		</article>
+	</section>
+
+	<section id='types'>
+		<h2>TypeScript Types</h2>
+
+		<article>
+			<h3>Core Types</h3>
+			<ul>
+				<li><code>Routes</code> - Route configuration object type</li>
+				<li><code>RouterApi</code> - Return type of createRouter()</li>
+				<li><code>RouteComponent</code> - Component type for routes</li>
+				<li><code>LazyRouteComponent</code> - Lazy-loaded component type</li>
+				<li><code>LayoutComponent</code> - Layout component type</li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Navigation Types</h3>
+			<ul>
+				<li><code>NavigateOptions</code> - Options for navigate() function</li>
+				<li><code>Location</code> - Location object type</li>
+				<li><code>Path</code> - Path string type</li>
+				<li><code>PathParams</code> - Route parameters type</li>
+				<li><code>AllParams</code> - All extracted parameters</li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Transition Types</h3>
+			<ul>
+				<li><code>TransitionConfig</code> - View transition configuration</li>
+				<li>
+					<code>TransitionDirection</code> - 'forward' | 'back' | 'unknown'
+				</li>
+				<li><code>ViewTransition</code> - Native ViewTransition interface</li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Hook Types</h3>
+			<ul>
+				<li><code>Hooks</code> - Navigation hooks configuration</li>
+				<li><code>Phase</code> - Hook execution phase</li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Component Tree Types</h3>
+			<ul>
+				<li><code>ComponentTree</code> - Component tree structure</li>
+				<li><code>ComponentTreeNode</code> - Individual tree node</li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Type Usage Example</h3>
+			<pre><code>{`import type { 
+  Routes, 
+  NavigateOptions, 
+  TransitionConfig 
+} from '@mdsv/arc'
+
+const routes: Routes = {
+  '/': Home,
+  '/about': About,
+}
+
+const navOptions: NavigateOptions = {
+  transition: {
+    duration: 300,
+    easing: 'ease-in-out'
+  }
+}`}</code></pre>
+		</article>
+	</section>
+</Layout>
+
+<style>
+h1 {
+	margin-bottom: 1rem;
+}
+
+.api-nav {
+	display: flex;
+	gap: 1rem;
+	padding: 1rem;
+	background: #0f0f0f;
+	border-radius: 0.5rem;
+	margin: 2rem 0;
+	flex-wrap: wrap;
+}
+
+.api-nav a {
+	color: #ff3e00;
+	text-decoration: none;
+	font-weight: 600;
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	transition: background 0.2s;
+}
+
+.api-nav a:hover {
+	background: #1a1a1a;
+}
+
+section {
+	margin: 3rem 0;
+	padding-top: 2rem;
+	border-top: 1px solid #333;
+}
+
+section:first-of-type {
+	border-top: none;
+}
+
+section h2 {
+	color: #ff3e00;
+	margin-bottom: 2rem;
+}
+
+article {
+	margin: 2.5rem 0;
+	padding: 1.5rem;
+	background: #0f0f0f;
+	border-radius: 0.5rem;
+	border-left: 3px solid #ff3e00;
+}
+
+article h3 {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+article h4 {
+	margin-top: 1.5rem;
+	margin-bottom: 0.75rem;
+	color: #aaa;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+article p {
+	margin: 0.75rem 0;
+	color: #ccc;
+}
+
+article ul {
+	margin: 0.5rem 0;
+	padding-left: 1.5rem;
+	line-height: 1.8;
+}
+
+article li {
+	color: #ccc;
+}
+
+pre {
+	margin: 1rem 0;
+	padding: 1rem;
+	background: #000;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+}
+
+code {
+	font-family: 'Courier New', monospace;
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+:not(pre) > code {
+	background: #1a1a1a;
+	padding: 0.2rem 0.4rem;
+	border-radius: 0.25rem;
+	color: #ff3e00;
+}
+</style>

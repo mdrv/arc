@@ -14,11 +14,7 @@
  */
 
 // Core router
-export {
-	createRouter,
-	isActiveLink,
-	searchParamsProxy as searchParams,
-} from './create.svelte'
+export { createRouter, isActiveLink, searchParamsProxy as searchParams } from './create.svelte'
 // Loader utilities
 export { countProgress, Loader, Status } from './load.svelte'
 export { default as Router } from './router.svelte'

@@ -5,34 +5,37 @@ A modern, lightweight client-side router for Svelte 5 with **View Transition API
 ## What's New in v002
 
 ### 🎬 View Transition API Integration
+
 - **Native browser transitions** - GPU-accelerated, smooth animations
 - **Automatic fallback** - Dual-tree system for browsers without support
 - **Maximum control** - Choose per-route: use native or custom animations
 - **Direction detection** - Automatic forward/back detection for different animations
 
 ### ⚡ Performance
+
 - **Zero overhead** when using View Transitions API
 - **Smaller bundle** when not using dual-tree fallback
 - **Faster transitions** with native browser compositing
 
 ### 🎨 Built-in Transition Presets
+
 - Fade, Slide, Scale, Material Design
 - Easy custom transitions
 - CSS generation helper
 
 ## Features
 
-✅ **Client-side routing** - Fast, SPA-style navigation  
-✅ **View Transition API** - Native, smooth transitions  
-✅ **Nested routes & layouts** - Organize complex apps  
-✅ **Dynamic parameters** - Extract params from URLs  
-✅ **Wildcard routes** - Catch-all for 404s  
-✅ **Lazy loading** - Code-split automatically  
-✅ **Navigation hooks** - Full lifecycle control  
-✅ **Dual-tree fallback** - Complex animations when needed  
-✅ **Type-safe** - Full TypeScript support  
-✅ **Direction-aware** - Different animations for back/forward  
-✅ **Image loader** - Progressive loading utility  
+✅ **Client-side routing** - Fast, SPA-style navigation\
+✅ **View Transition API** - Native, smooth transitions\
+✅ **Nested routes & layouts** - Organize complex apps\
+✅ **Dynamic parameters** - Extract params from URLs\
+✅ **Wildcard routes** - Catch-all for 404s\
+✅ **Lazy loading** - Code-split automatically\
+✅ **Navigation hooks** - Full lifecycle control\
+✅ **Dual-tree fallback** - Complex animations when needed\
+✅ **Type-safe** - Full TypeScript support\
+✅ **Direction-aware** - Different animations for back/forward\
+✅ **Image loader** - Progressive loading utility
 
 ## Installation
 
@@ -47,15 +50,15 @@ npm install @mdsv/arc
 ```ts
 // routes.ts
 import { createRouter } from '@mdsv/arc'
-import Home from './pages/home.svelte'
 import About from './pages/about.svelte'
+import Home from './pages/home.svelte'
 
 export const { navigate, route, isActive } = createRouter({
-  routes: {
-    '/': Home,
-    '/about': About,
-    '/users/:id': () => import('./pages/user.svelte'),
-  }
+	routes: {
+		'/': Home,
+		'/about': About,
+		'/users/:id': () => import('./pages/user.svelte'),
+	},
 })
 ```
 
@@ -64,11 +67,13 @@ export const { navigate, route, isActive } = createRouter({
 ```svelte
 <!-- App.svelte -->
 <script>
-  import { Router, generateTransitionCSS } from '@mdsv/arc'
+	import { generateTransitionCSS, Router } from '@mdsv/arc'
 </script>
 
 <svelte:head>
-  <style>{@html generateTransitionCSS()}</style>
+	<style>
+		{@html generateTransitionCSS()}
+	</style>
 </svelte:head>
 
 <Router />
@@ -78,20 +83,23 @@ export const { navigate, route, isActive } = createRouter({
 
 ```svelte
 <script>
-  import { navigate, transitionPresets } from '@mdsv/arc'
+	import { navigate, transitionPresets } from '@mdsv/arc'
 </script>
 
 <!-- Simple fade transition -->
-<a href="/about">About</a>
+<a href='/about'>About</a>
 
 <!-- Custom transition via data attribute -->
-<a href="/products" data-transition="slide">Products</a>
+<a href='/products' data-transition='slide'>Products</a>
 
 <!-- Programmatic with transition -->
-<button on:click={() => navigate('/dashboard', {
-  transition: transitionPresets.material()
-})}>
-  Dashboard
+<button
+	on:click={() =>
+	navigate('/dashboard', {
+		transition: transitionPresets.material(),
+	})}
+>
+	Dashboard
 </button>
 ```
 
@@ -104,17 +112,17 @@ import { navigate, transitionPresets } from '@mdsv/arc'
 
 // Fade transition
 navigate('/about', {
-  transition: transitionPresets.fade()
+	transition: transitionPresets.fade(),
 })
 
 // Slide transition (auto-detects direction)
 navigate('/products', {
-  transition: transitionPresets.slide()
+	transition: transitionPresets.slide(),
 })
 
 // Material Design transition
 navigate('/dashboard', {
-  transition: transitionPresets.material()
+	transition: transitionPresets.material(),
 })
 ```
 
@@ -122,16 +130,16 @@ navigate('/dashboard', {
 
 ```ts
 navigate('/special', {
-  transition: {
-    name: 'my-transition',
-    classes: ['custom-animation'],
-    onTransitionStart: (transition) => {
-      console.log('Transition starting...')
-    },
-    onTransitionEnd: (transition) => {
-      console.log('Transition complete!')
-    }
-  }
+	transition: {
+		name: 'my-transition',
+		classes: ['custom-animation'],
+		onTransitionStart: (transition) => {
+			console.log('Transition starting...')
+		},
+		onTransitionEnd: (transition) => {
+			console.log('Transition complete!')
+		},
+	},
 })
 ```
 
@@ -139,8 +147,8 @@ navigate('/special', {
 
 ```ts
 // Automatically detects forward/back
-navigate('/next')  // Slides left (forward)
-navigate(-1)       // Slides right (back)
+navigate('/next') // Slides left (forward)
+navigate(-1) // Slides right (back)
 ```
 
 ### Force Dual-Tree Mode
@@ -149,9 +157,9 @@ For complex, programmatic animations:
 
 ```ts
 navigate('/complex', {
-  transition: {
-    forceDualTree: true,  // Use dual-tree instead of View Transitions
-  }
+	transition: {
+		forceDualTree: true, // Use dual-tree instead of View Transitions
+	},
 })
 ```
 
@@ -159,18 +167,18 @@ navigate('/complex', {
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/': {
-      transition: transitionPresets.fade(),
-      '/home': Home,
-    },
-    '/app': {
-      transition: transitionPresets.material(),
-      layout: AppLayout,
-      '/dashboard': Dashboard,
-      '/settings': Settings,
-    }
-  }
+	routes: {
+		'/': {
+			transition: transitionPresets.fade(),
+			'/home': Home,
+		},
+		'/app': {
+			transition: transitionPresets.material(),
+			layout: AppLayout,
+			'/dashboard': Dashboard,
+			'/settings': Settings,
+		},
+	},
 })
 ```
 
@@ -205,7 +213,7 @@ Then use it:
 
 ```ts
 navigate('/page', {
-  transition: { classes: ['my-custom-transition'] }
+	transition: { classes: ['my-custom-transition'] },
 })
 ```
 
@@ -215,14 +223,14 @@ For shared element transitions:
 
 ```svelte
 <script>
-  import { viewTransitionName } from '@mdsv/arc'
+	import { viewTransitionName } from '@mdsv/arc'
 </script>
 
 <!-- Image morphs between pages -->
-<img 
-  src={hero} 
-  alt="Hero"
-  use:viewTransitionName="hero-image"
+<img
+	src={hero}
+	alt='Hero'
+	use:viewTransitionName='hero-image'
 />
 ```
 
@@ -242,24 +250,24 @@ When you need maximum control:
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/gallery': {
-      hooks: {
-        async duringLoad({ keys, transition }) {
-          // Preload images
-          await loadImages()
-        },
-        
-        async duringRender({ keys, transition }) {
-          // Custom animations with GSAP, anime.js, etc.
-          if (!transition) {  // Only if not using View Transitions
-            await animateGallery(keys.in, keys.out)
-          }
-        },
-      },
-      '/photos': PhotoGallery,
-    }
-  }
+	routes: {
+		'/gallery': {
+			hooks: {
+				async duringLoad({ keys, transition }) {
+					// Preload images
+					await loadImages()
+				},
+
+				async duringRender({ keys, transition }) {
+					// Custom animations with GSAP, anime.js, etc.
+					if (!transition) { // Only if not using View Transitions
+						await animateGallery(keys.in, keys.out)
+					}
+				},
+			},
+			'/photos': PhotoGallery,
+		},
+	},
 })
 ```
 
@@ -267,15 +275,15 @@ const router = createRouter({
 
 ```svelte
 <script>
-  import { createRouter } from '@mdsv/arc'
-  
-  const { supportsViewTransitions } = createRouter({ routes })
+	import { createRouter } from '@mdsv/arc'
+
+	const { supportsViewTransitions } = createRouter({ routes })
 </script>
 
 {#if supportsViewTransitions}
-  <p>🎉 Native smooth transitions!</p>
+	<p>🎉 Native smooth transitions!</p>
 {:else}
-  <p>Using dual-tree fallback</p>
+	<p>Using dual-tree fallback</p>
 {/if}
 ```
 
@@ -285,30 +293,32 @@ const router = createRouter({
 import { transitionPresets } from '@mdsv/arc'
 
 // Available presets:
-transitionPresets.fade()            // Simple crossfade
-transitionPresets.slide('forward')  // Slide animation
-transitionPresets.scale()           // Scale + fade
-transitionPresets.material()        // Material Design style
-transitionPresets.none()            // No transition
-transitionPresets.custom({          // Full control
-  name: 'my-transition',
-  direction: 'forward',
-  classes: ['my-class'],
-  forceDualTree: false,
-  onTransitionStart: (t) => {},
-  onTransitionEnd: (t) => {}
+transitionPresets.fade() // Simple crossfade
+transitionPresets.slide('forward') // Slide animation
+transitionPresets.scale() // Scale + fade
+transitionPresets.material() // Material Design style
+transitionPresets.none() // No transition
+transitionPresets.custom({ // Full control
+	name: 'my-transition',
+	direction: 'forward',
+	classes: ['my-class'],
+	forceDualTree: false,
+	onTransitionStart: (t) => {},
+	onTransitionEnd: (t) => {},
 })
 ```
 
 ## Browser Support
 
 **View Transition API:**
+
 - Chrome 111+
 - Edge 111+
 - Safari 18+
 - Opera 97+
 
 **Fallback:**
+
 - All modern browsers (uses dual-tree system)
 
 ## Performance Tips
@@ -325,7 +335,9 @@ To use View Transitions, add the CSS:
 
 ```svelte
 <svelte:head>
-  <style>{@html generateTransitionCSS()}</style>
+	<style>
+		{@html generateTransitionCSS()}
+	</style>
 </svelte:head>
 ```
 
@@ -334,11 +346,13 @@ To use View Transitions, add the CSS:
 ### `createRouter(config)`
 
 **New in v002:**
+
 - Returns `supportsViewTransitions: boolean`
 
 ### `navigate(path, options)`
 
 **New options:**
+
 - `transition?: TransitionConfig` - Transition configuration
 
 ### `NavigateOptions.transition`
@@ -371,11 +385,11 @@ To use View Transitions, add the CSS:
 import { createRouter, generateTransitionCSS } from '@mdsv/arc'
 
 const { navigate, route } = createRouter({
-  routes: {
-    '/': () => import('./pages/home.svelte'),
-    '/about': () => import('./pages/about.svelte'),
-    '/contact': () => import('./pages/contact.svelte'),
-  }
+	routes: {
+		'/': () => import('./pages/home.svelte'),
+		'/about': () => import('./pages/about.svelte'),
+		'/contact': () => import('./pages/contact.svelte'),
+	},
 })
 ```
 
@@ -383,19 +397,19 @@ const { navigate, route } = createRouter({
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/': Home,
-    '/products': {
-      transition: transitionPresets.slide(),
-      '/:category': ProductList,
-      '/:category/:id': ProductDetail,
-    },
-    '/cart': {
-      transition: transitionPresets.material(),
-      '/': Cart,
-      '/checkout': Checkout,
-    }
-  }
+	routes: {
+		'/': Home,
+		'/products': {
+			transition: transitionPresets.slide(),
+			'/:category': ProductList,
+			'/:category/:id': ProductDetail,
+		},
+		'/cart': {
+			transition: transitionPresets.material(),
+			'/': Cart,
+			'/checkout': Checkout,
+		},
+	},
 })
 ```
 
@@ -403,25 +417,25 @@ const router = createRouter({
 
 ```ts
 const router = createRouter({
-  routes: {
-    '/': Landing,
-    '/(auth)': {
-      '/login': Login,
-      '/register': Register,
-    },
-    '/app': {
-      layout: DashboardLayout,
-      transition: transitionPresets.fade(),
-      hooks: {
-        beforeLoad: async () => {
-          if (!isAuthenticated()) throw navigate('/login')
-        }
-      },
-      '/': Dashboard,
-      '/profile': Profile,
-      '/settings': Settings,
-    }
-  }
+	routes: {
+		'/': Landing,
+		'/(auth)': {
+			'/login': Login,
+			'/register': Register,
+		},
+		'/app': {
+			layout: DashboardLayout,
+			transition: transitionPresets.fade(),
+			hooks: {
+				beforeLoad: async () => {
+					if (!isAuthenticated()) throw navigate('/login')
+				},
+			},
+			'/': Dashboard,
+			'/profile': Profile,
+			'/settings': Settings,
+		},
+	},
 })
 ```
 
@@ -447,7 +461,7 @@ Use `will-change` in CSS:
 
 ```ts
 navigate('/page', {
-  transition: transitionPresets.none()
+	transition: transitionPresets.none(),
 })
 ```
 

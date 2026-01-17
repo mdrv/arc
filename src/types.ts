@@ -8,10 +8,9 @@ export type BaseProps = {}
 /**
  * Lazy-loaded route component
  */
-export type LazyRouteComponent<Props extends BaseProps = BaseProps> =
-	() => Promise<{
-		[key: string]: Component<Props>
-	}>
+export type LazyRouteComponent<Props extends BaseProps = BaseProps> = () => Promise<{
+	[key: string]: Component<Props>
+}>
 
 /**
  * Route component can be either a regular component or a lazy-loaded one
@@ -199,71 +198,53 @@ export type Phase =
  * Type utilities for extracting route paths and params
  */
 type StripNonRoutes<T extends Routes> = {
-	[K in keyof T as K extends `*${string}`
-		? never
-		: K extends `(*${string})`
-			? never
-			: K extends 'layout'
-				? never
-				: K extends 'hooks'
-					? never
-					: K extends 'transition'
-						? never
-						: K]: T[K] extends Routes ? StripNonRoutes<T[K]> : T[K]
+	[
+		K in keyof T as K extends `*${string}` ? never
+			: K extends `(*${string})` ? never
+			: K extends 'layout' ? never
+			: K extends 'hooks' ? never
+			: K extends 'transition' ? never
+			: K
+	]: T[K] extends Routes ? StripNonRoutes<T[K]> : T[K]
 }
 
 type RecursiveKeys<T extends Routes, Prefix extends string = ''> = {
-	[K in keyof T]: K extends string
-		? T[K] extends Routes
-			? RecursiveKeys<T[K], `${Prefix}${K}`>
-			: `${Prefix}${K}`
+	[K in keyof T]: K extends string ? T[K] extends Routes ? RecursiveKeys<T[K], `${Prefix}${K}`>
+		: `${Prefix}${K}`
 		: never
 }[keyof T]
 
-type RemoveLastSlash<T extends string> = T extends '/'
-	? T
-	: T extends `${infer R}/`
-		? R
-		: T
+type RemoveLastSlash<T extends string> = T extends '/' ? T
+	: T extends `${infer R}/` ? R
+	: T
 
-type RemoveParenthesis<T extends string> =
-	T extends `${infer A}(${infer B})${infer C}`
-		? RemoveParenthesis<`${A}${B}${C}`>
-		: T
+type RemoveParenthesis<T extends string> = T extends `${infer A}(${infer B})${infer C}`
+	? RemoveParenthesis<`${A}${B}${C}`>
+	: T
 
 export type Path<T extends Routes> = RemoveParenthesis<
 	RemoveLastSlash<RecursiveKeys<StripNonRoutes<T>>>
 >
 
-type ExtractParams<T extends string> =
-	T extends `${string}:${infer Param}/${infer Rest}`
-		? Param | ExtractParams<`/${Rest}`>
-		: T extends `${string}(:${infer Param})`
-			? Param
-			: T extends `${string}:${infer Param}`
-				? Param
-				: T extends `${string}(*${infer Param})`
-					? Param
-					: T extends `${string}*${infer Param}`
-						? Param extends ''
-							? never
-							: Param
-						: never
+type ExtractParams<T extends string> = T extends `${string}:${infer Param}/${infer Rest}`
+	? Param | ExtractParams<`/${Rest}`>
+	: T extends `${string}(:${infer Param})` ? Param
+	: T extends `${string}:${infer Param}` ? Param
+	: T extends `${string}(*${infer Param})` ? Param
+	: T extends `${string}*${infer Param}` ? Param extends '' ? never
+		: Param
+	: never
 
-export type PathParams<T extends string> =
-	ExtractParams<T> extends never ? never : Record<ExtractParams<T>, string>
+export type PathParams<T extends string> = ExtractParams<T> extends never ? never : Record<ExtractParams<T>, string>
 
-export type ConstructPathArgs<T extends string> =
-	PathParams<T> extends never ? [T] : [T, PathParams<T>]
+export type ConstructPathArgs<T extends string> = PathParams<T> extends never ? [T] : [T, PathParams<T>]
 
 type NavigateArgs<T extends string> =
-	| (PathParams<T> extends never
-			? [T] | [T, NavigateOptions]
-			: [T, NavigateOptions & { params: PathParams<T> }])
+	| (PathParams<T> extends never ? [T] | [T, NavigateOptions]
+		: [T, NavigateOptions & { params: PathParams<T> }])
 	| [number]
 
-export type IsActiveArgs<T extends string> =
-	PathParams<T> extends never ? [T] : [T] | [T, PathParams<T>]
+export type IsActiveArgs<T extends string> = PathParams<T> extends never ? [T] : [T] | [T, PathParams<T>]
 
 export type AllParams<T extends Routes> = Partial<
 	Record<ExtractParams<RecursiveKeys<T>>, string>

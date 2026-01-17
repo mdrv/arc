@@ -79,10 +79,10 @@ In `package.json`:
 
 ```json
 {
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch"
-  }
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch"
+	}
 }
 ```
 
@@ -107,16 +107,16 @@ In `package.json`, we configure how consumers import our package:
 
 ```json
 {
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  }
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	}
 }
 ```
 
@@ -175,11 +175,11 @@ tsdown uses the `tsconfig.json` for type checking and declaration generation:
 
 ```json
 {
-  "compilerOptions": {
-    "declaration": true,
-    "declarationMap": true,
-    "outDir": "./dist"
-  }
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"outDir": "./dist"
+	}
 }
 ```
 

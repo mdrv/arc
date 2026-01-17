@@ -290,10 +290,10 @@ Currently no testing setup. Recommended:
 
 ```json
 {
-  "editor.defaultFormatter": "dprint.dprint",
-  "editor.formatOnSave": true,
-  "editor.tabSize": 2,
-  "editor.insertSpaces": false
+	"editor.defaultFormatter": "dprint.dprint",
+	"editor.formatOnSave": true,
+	"editor.tabSize": 2,
+	"editor.insertSpaces": false
 }
 ```
 

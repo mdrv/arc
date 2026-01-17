@@ -5,6 +5,7 @@
 **@mdsv/arc** is a modern, lightweight client-side router for Svelte 5 with native View Transition API support and advanced animation control.
 
 ### Goals
+
 - Provide seamless page transitions using browser's native View Transition API
 - Maintain zero overhead for simple transitions through GPU acceleration
 - Support complex routing patterns (nested routes, layouts, dynamic params, wildcards)
@@ -34,19 +35,23 @@
 ### Architecture Patterns
 
 #### Dual-Tree System
+
 The core architecture uses two component trees (A and B) that alternate:
+
 - **State machine**: Cycles through `'a'` → `'ba'` → `'b'` → `'ab'` → `'a'`
 - **Equality point**: Tracks where trees diverge to minimize re-renders
 - **Shared layouts**: Components before the equality point stay mounted
 - **Overlapping animations**: Both trees visible during transitions
 
 #### View Transition Integration
+
 - **Native first**: Use View Transition API when available for GPU acceleration
 - **Progressive enhancement**: Fallback to dual-tree for unsupported browsers
 - **Force option**: Allow `forceDualTree` for complex programmatic animations
 - **Direction detection**: Automatically detect forward/back navigation
 
 #### Type Safety
+
 - **Path inference**: Extract valid paths from route configuration
 - **Param extraction**: Infer required parameters from route patterns
 - **Router API**: Fully typed navigate, isActive, and route objects
@@ -54,6 +59,7 @@ The core architecture uses two component trees (A and B) that alternate:
 ### Testing Strategy
 
 Currently not explicitly defined in the project. Recommended approach:
+
 - Unit tests for routing logic (matchRoute, path parsing)
 - Integration tests for navigation flows
 - Browser tests for View Transition API fallbacks
@@ -89,6 +95,7 @@ ComponentTree = {
 ### Transition Presets
 
 Built-in transitions available:
+
 - `fade()` - Simple crossfade
 - `slide()` - Directional slide with auto-detection
 - `scale()` - Scale + fade effect
@@ -125,7 +132,7 @@ Built-in transitions available:
 - **View Transition API**: Core feature for smooth page transitions
   - `document.startViewTransition(callback)`
   - CSS pseudo-elements: `::view-transition-old()`, `::view-transition-new()`
-  
+
 - **History API**: Navigation and state management
   - `history.pushState()`, `history.replaceState()`
   - `popstate` event listener

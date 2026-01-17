@@ -1,40 +1,61 @@
-<script lang="ts">
-	import { createRouter, transitionPresets } from '@mdsv/arc'
+<script lang='ts'>
+	import { fade } from 'svelte/transition'
+	import About from './demo-pages/About.svelte'
+	import Contact from './demo-pages/Contact.svelte'
+	import Home from './demo-pages/Home.svelte'
 
-	const Home = () => import('./demo-pages/Home.svelte')
-	const About = () => import('./demo-pages/About.svelte')
-	const Contact = () => import('./demo-pages/Contact.svelte')
+	let currentPage = $state<'home' | 'about' | 'contact'>('home')
+	let key = $state(0)
 
-	const { navigate, route } = createRouter({
-		routes: {
-			'/': Home,
-			'/about': About,
-			'/contact': Contact,
-		},
-	})
+	const pages = {
+		home: { component: Home, path: '/' },
+		about: { component: About, path: '/about' },
+		contact: { component: Contact, path: '/contact' },
+	}
 
-	function handleNavigate(path: string) {
-		navigate(path as any, {
-			transition: transitionPresets.fade(),
-		})
+	function navigateTo(page: 'home' | 'about' | 'contact') {
+		currentPage = page
+		key++
 	}
 </script>
 
-<div class="demo-router">
+<div class='demo-router'>
 	<nav>
-		<button on:click={() => handleNavigate('/')} style="background: {route.pathname === '/' ? '#ff3e00' : '#333'}">
+		<button
+			onclick={() => navigateTo('home')}
+			style="background: {currentPage === 'home' ? '#ff3e00' : '#333'}"
+		>
 			Home
 		</button>
-		<button on:click={() => handleNavigate('/about')} style="background: {route.pathname === '/about' ? '#ff3e00' : '#333'}">
+		<button
+			onclick={() => navigateTo('about')}
+			style="background: {currentPage === 'about' ? '#ff3e00' : '#333'}"
+		>
 			About
 		</button>
-		<button on:click={() => handleNavigate('/contact')} style="background: {route.pathname === '/contact' ? '#ff3e00' : '#333'}">
+		<button
+			onclick={() => navigateTo('contact')}
+			style="background: {currentPage === 'contact' ? '#ff3e00' : '#333'}"
+		>
 			Contact
 		</button>
 	</nav>
 
-	<div class="demo-content">
-		<p>Current path: <code>{route.pathname}</code></p>
+	<div class='demo-content'>
+		<p>Current path: <code>{pages[currentPage].path}</code></p>
+		<div class='page-container'>
+			{#key key}
+				<div in:fade={{ duration: 300 }}>
+					{#if currentPage === 'home'}
+						<Home />
+					{:else if currentPage === 'about'}
+						<About />
+					{:else if currentPage === 'contact'}
+						<Contact />
+					{/if}
+				</div>
+			{/key}
+		</div>
 	</div>
 </div>
 
@@ -68,6 +89,10 @@
 		padding: 1rem;
 		border-radius: 0.25rem;
 		min-height: 200px;
+	}
+
+	.page-container {
+		margin-top: 1rem;
 	}
 
 	code {

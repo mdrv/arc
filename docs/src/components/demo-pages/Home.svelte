@@ -1,10 +1,13 @@
-<script lang="ts">
+<script lang='ts'>
 </script>
 
-<div class="page">
+<div class='page'>
 	<h2>Home Page</h2>
 	<p>Welcome to the @mdsv/arc router demo!</p>
-	<p>This is a live example showing smooth page transitions with the View Transition API.</p>
+	<p>
+		This is a live example showing smooth page transitions with the View
+		Transition API.
+	</p>
 </div>
 
 <style>

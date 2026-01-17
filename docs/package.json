@@ -1,24 +1,24 @@
 {
-  "name": "@mdsv/arc-docs",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "d": "astro dev",
-    "build": "astro build",
-    "b": "astro build",
-    "preview": "astro preview",
-    "p": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/svelte": "latest",
-    "astro": "latest",
-    "svelte": "^5.0.0"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "latest"
-  }
+	"name": "@mdsv/arc-docs",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"d": "astro dev",
+		"build": "astro build",
+		"b": "astro build",
+		"preview": "astro preview",
+		"p": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/svelte": "latest",
+		"astro": "latest",
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"typescript": "latest"
+	}
 }

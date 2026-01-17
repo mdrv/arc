@@ -1,7 +1,7 @@
-<script lang="ts">
+<script lang='ts'>
 </script>
 
-<div class="page">
+<div class='page'>
 	<h2>About Page</h2>
 	<p>@mdsv/arc is a modern, lightweight router for Svelte 5.</p>
 	<ul>

@@ -1,8 +1,4 @@
-import type {
-	TransitionConfig,
-	TransitionDirection,
-	ViewTransition,
-} from './types'
+import type { TransitionConfig, TransitionDirection, ViewTransition } from './types'
 
 /**
  * Check if View Transition API is supported

@@ -1,11 +1,7 @@
 import { tick } from 'svelte'
 import type { Action } from 'svelte/action'
 import { SvelteURLSearchParams } from 'svelte/reactivity'
-import {
-	detectNavigationDirection,
-	startViewTransition,
-	supportsViewTransitions,
-} from './transitions'
+import { detectNavigationDirection, startViewTransition, supportsViewTransitions } from './transitions'
 import type {
 	ComponentTree,
 	Location,

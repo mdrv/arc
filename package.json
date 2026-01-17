@@ -1,60 +1,62 @@
 {
-  "name": "@mdsv/arc",
-  "version": "0.0.2",
-  "description": "A modern, lightweight client-side router for Svelte 5 with View Transition API support and advanced animation control",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist",
-    "src",
-    "README.md"
-  ],
-  "scripts": {
-    "b": "tsdown",
-    "d": "tsdown --watch",
-    "format": "dprint fmt",
-    "format:check": "dprint check",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bun run format && bun run typecheck && bun run build"
-  },
-  "keywords": [
-    "svelte",
-    "svelte5",
-    "router",
-    "routing",
-    "view-transitions",
-    "transitions",
-    "spa",
-    "client-side",
-    "navigation",
-    "typescript"
-  ],
-  "author": "",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mdsv/arc"
-  },
-  "bugs": {
-    "url": "https://github.com/mdsv/arc/issues"
-  },
-  "homepage": "https://github.com/mdsv/arc#readme",
-  "peerDependencies": {
-    "svelte": "^5.0.0"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "dprint": "latest",
-    "svelte": "^5.0.0",
-    "tsdown": "latest",
-    "typescript": "latest"
-  }
+	"name": "@mdsv/arc",
+	"version": "0.0.2",
+	"description": "A modern, lightweight client-side router for Svelte 5 with View Transition API support and advanced animation control",
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"src",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"b": "tsdown",
+		"dev": "tsdown --watch",
+		"d": "tsdown --watch",
+		"format": "dprint fmt",
+		"format:check": "dprint check",
+		"typecheck": "tsc --noEmit",
+		"prepublishOnly": "bun run format && bun run typecheck && bun run build"
+	},
+	"keywords": [
+		"svelte",
+		"svelte5",
+		"router",
+		"routing",
+		"view-transitions",
+		"transitions",
+		"spa",
+		"client-side",
+		"navigation",
+		"typescript"
+	],
+	"author": "",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mdsv/arc"
+	},
+	"bugs": {
+		"url": "https://github.com/mdsv/arc/issues"
+	},
+	"homepage": "https://github.com/mdsv/arc#readme",
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"dprint": "latest",
+		"svelte": "^5.0.0",
+		"tsdown": "latest",
+		"typescript": "latest"
+	}
 }

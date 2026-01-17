@@ -1,10 +1,10 @@
-<script lang="ts">
+<script lang='ts'>
 </script>
 
-<div class="page">
+<div class='page'>
 	<h2>Contact Page</h2>
 	<p>Find us on GitHub:</p>
-	<a href="https://github.com/mdrv/arc" target="_blank">github.com/mdrv/arc</a>
+	<a href='https://github.com/mdrv/arc' target='_blank'>github.com/mdrv/arc</a>
 </div>
 
 <style>
