@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro'
+import RouterDemo from '../components/RouterDemo.svelte'
+---
+
+<Layout title="Examples - @mdsv/arc">
+	<h1>Live Examples</h1>
+	<p>
+		Interact with these live examples to see @mdsv/arc in action. All demos use actual Svelte 5 components with the router.
+	</p>
+
+	<section>
+		<h2>Basic Router Demo</h2>
+		<p>
+			This example shows a simple router with three pages and fade transitions.
+		</p>
+		<div class="demo-container">
+			<RouterDemo client:load />
+		</div>
+	</section>
+
+	<section>
+		<h2>Code Example</h2>
+		<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
+
+const { navigate, route } = createRouter({
+  routes: {
+    '/': Home,
+    '/about': About,
+    '/contact': Contact,
+  }
+})
+
+// Navigate with transition
+navigate('/about', {
+  transition: transitionPresets.fade()
+})`}</code></pre>
+	</section>
+</Layout>
+
+<style>
+	section {
+		margin: 3rem 0;
+	}
+</style>
