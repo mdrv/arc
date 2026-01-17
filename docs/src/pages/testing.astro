@@ -135,9 +135,9 @@ bun run test:coverage</code></pre>
 
 			<h3>Mock Components</h3>
 			<p>Use function-based mocks that match Svelte component structure:</p>
-			<pre><code>import type { Component } from 'svelte'
+			<pre><code>import type &#123; Component &#125; from 'svelte'
 
-const TestComponent = function() {} as unknown as Component</code></pre>
+const TestComponent = function() &#123;&#125; as unknown as Component</code></pre>
 
 			<h3>Browser API Mocks</h3>
 			<p>Browser APIs are mocked in <code>tests/setup.ts</code> and reset before each test:</p>
@@ -149,13 +149,13 @@ const TestComponent = function() {} as unknown as Component</code></pre>
 
 			<h3>Test Organization</h3>
 			<p>Group related tests using <code>describe</code> blocks:</p>
-			<pre><code>describe('matchRoute', () => {
-  describe('Static Routes', () => {
-    it('should match simple static route', () => {
+			<pre><code>describe('matchRoute', () =&gt; &#123;
+  describe('Static Routes', () =&gt; &#123;
+    it('should match simple static route', () =&gt; &#123;
       // test implementation
-    })
-  })
-})</code></pre>
+    &#125;)
+  &#125;)
+&#125;)</code></pre>
 		</section>
 
 		<section>
