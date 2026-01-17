@@ -2,11 +2,11 @@
 
 ## Summary
 
-Add a modern, comprehensive test suite to @mdsv/arc using Vitest to ensure reliability, prevent regressions, and provide confidence for future development and adoption.
+Add a modern, comprehensive test suite to @mdrv/arc using Vitest to ensure reliability, prevent regressions, and provide confidence for future development and adoption.
 
 ## Problem Statement
 
-Currently, @mdsv/arc has no automated tests, which presents several challenges:
+Currently, @mdrv/arc has no automated tests, which presents several challenges:
 
 1. **No regression protection** - Changes to the codebase may inadvertently break existing functionality
 2. **Difficult refactoring** - Fear of breaking things prevents confident code improvements

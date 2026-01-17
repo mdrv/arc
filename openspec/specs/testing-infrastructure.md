@@ -2,7 +2,7 @@
 
 ## Overview
 
-The @mdsv/arc testing infrastructure uses **Vitest** with **happy-dom** to provide comprehensive test coverage for the router library. The test suite includes 67+ passing tests covering core utilities and routing logic.
+The @mdrv/arc testing infrastructure uses **Vitest** with **happy-dom** to provide comprehensive test coverage for the router library. The test suite includes 67+ passing tests covering core utilities and routing logic.
 
 ## Architecture
 

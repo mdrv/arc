@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the specific tasks needed to implement a comprehensive test suite for @mdsv/arc using Vitest.
+This document outlines the specific tasks needed to implement a comprehensive test suite for @mdrv/arc using Vitest.
 
 ## Task List
 

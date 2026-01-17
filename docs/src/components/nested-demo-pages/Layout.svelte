@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { Router } from '@mdsv/arc'
+	import { Router } from '@mdrv/arc'
 </script>
 
 <div class='layout'>

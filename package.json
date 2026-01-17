@@ -1,5 +1,5 @@
 {
-	"name": "@mdsv/arc",
+	"name": "@mdrv/arc",
 	"version": "0.0.5",
 	"description": "A modern, lightweight client-side router for Svelte 5 with View Transition API support and advanced animation control",
 	"type": "module",

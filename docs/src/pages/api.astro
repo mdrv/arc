@@ -2,10 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title='API Reference - @mdsv/arc'>
+<Layout title='API Reference - @mdrv/arc'>
 	<h1>API Reference</h1>
 	<p>
-		Complete API documentation for @mdsv/arc. All public exports and their
+		Complete API documentation for @mdrv/arc. All public exports and their
 		usage.
 	</p>
 
@@ -45,7 +45,7 @@ import Layout from '../layouts/Layout.astro'
 			</ul>
 
 			<h4>Example</h4>
-			<pre><code>{`import { createRouter } from '@mdsv/arc'
+			<pre><code>{`import { createRouter } from '@mdrv/arc'
 
 const { navigate, route } = createRouter({
   routes: {
@@ -67,7 +67,7 @@ const { navigate, route } = createRouter({
 			<p>Component that renders the active route. Used for nested routing.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import Router from '@mdsv/arc/router.svelte'
+			<pre><code>{`import Router from '@mdrv/arc/router.svelte'
 
 <div class="layout">
   <nav><!-- Navigation --></nav>
@@ -99,7 +99,7 @@ const { navigate, route } = createRouter({
 			</ul>
 
 			<h4>Example</h4>
-			<pre><code>{`import { createRouter, transitionPresets } from '@mdsv/arc'
+			<pre><code>{`import { createRouter, transitionPresets } from '@mdrv/arc'
 
 const { navigate } = createRouter({ routes })
 
@@ -120,7 +120,7 @@ navigate('/login', { replace: true })`}</code></pre>
 			<p>Check if a path matches the current route.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { isActiveLink } from '@mdsv/arc'
+			<pre><code>{`import { isActiveLink } from '@mdrv/arc'
 
 <a href="/about" class:active={isActiveLink('/about')}>
   About
@@ -168,7 +168,7 @@ navigate('/login', { replace: true })`}</code></pre>
 			</ul>
 
 			<h4>Example</h4>
-			<pre><code>{`import { transitionPresets } from '@mdsv/arc'
+			<pre><code>{`import { transitionPresets } from '@mdrv/arc'
 
 navigate('/next', {
   transition: transitionPresets.slide({ direction: 'left' })
@@ -188,7 +188,7 @@ navigate('/page', {
 			<p>Generate CSS for custom view transitions.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { generateTransitionCSS } from '@mdsv/arc'
+			<pre><code>{`import { generateTransitionCSS } from '@mdrv/arc'
 
 const css = generateTransitionCSS({
   duration: 300,
@@ -208,7 +208,7 @@ const css = generateTransitionCSS({
 			</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { detectNavigationDirection } from '@mdsv/arc'
+			<pre><code>{`import { detectNavigationDirection } from '@mdrv/arc'
 
 const direction = detectNavigationDirection('/step1', '/step2')
 // 'forward'
@@ -222,7 +222,7 @@ const direction2 = detectNavigationDirection('/step3', '/step1')
 			<p>Check if browser supports View Transition API.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { supportsViewTransitions } from '@mdsv/arc'
+			<pre><code>{`import { supportsViewTransitions } from '@mdrv/arc'
 
 if (supportsViewTransitions()) {
   // Use transitions
@@ -236,7 +236,7 @@ if (supportsViewTransitions()) {
 			<p>Manually start a view transition.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { startViewTransition } from '@mdsv/arc'
+			<pre><code>{`import { startViewTransition } from '@mdrv/arc'
 
 await startViewTransition(() => {
   // Update DOM
@@ -249,7 +249,7 @@ await startViewTransition(() => {
 			<p>Helper for setting view-transition-name CSS property.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { viewTransitionName } from '@mdsv/arc'
+			<pre><code>{`import { viewTransitionName } from '@mdrv/arc'
 
 <div style={viewTransitionName('hero-image')}>
   <img src="hero.jpg" alt="Hero" />
@@ -265,7 +265,7 @@ await startViewTransition(() => {
 			<p>Component for displaying loading states during route transitions.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { Loader } from '@mdsv/arc'
+			<pre><code>{`import { Loader } from '@mdrv/arc'
 
 <Loader>
   {#snippet loading()}
@@ -287,7 +287,7 @@ await startViewTransition(() => {
 			<p>Reactive proxy for reading and writing URL search parameters.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { searchParams } from '@mdsv/arc'
+			<pre><code>{`import { searchParams } from '@mdrv/arc'
 
 // Read parameter
 const page = searchParams.page // '1'
@@ -317,7 +317,7 @@ delete searchParams.page`}</code></pre>
 			<p>Track loading progress across multiple promises.</p>
 
 			<h4>Example</h4>
-			<pre><code>{`import { countProgress } from '@mdsv/arc'
+			<pre><code>{`import { countProgress } from '@mdrv/arc'
 
 const promises = [
   fetch('/api/users'),
@@ -393,7 +393,7 @@ const progress = countProgress(promises)
   Routes, 
   NavigateOptions, 
   TransitionConfig 
-} from '@mdsv/arc'
+} from '@mdrv/arc'
 
 const routes: Routes = {
   '/': Home,

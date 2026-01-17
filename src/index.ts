@@ -1,5 +1,5 @@
 /**
- * @module @mdsv/arc
+ * @module @mdrv/arc
  *
  * A lightweight, client-side router for Svelte 5 with View Transition API support.
  *

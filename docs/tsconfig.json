@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@mdsv/arc": ["../src/index.ts"]
+			"@mdrv/arc": ["../src/index.ts"]
 		}
 	},
 	"include": ["src/**/*"],

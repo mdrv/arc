@@ -1,8 +1,8 @@
-# Design: Comprehensive Test Suite for @mdsv/arc
+# Design: Comprehensive Test Suite for @mdrv/arc
 
 ## Architecture Overview
 
-This design document outlines the testing architecture for @mdsv/arc, a Svelte 5 router library with View Transition API support.
+This design document outlines the testing architecture for @mdrv/arc, a Svelte 5 router library with View Transition API support.
 
 ## Testing Philosophy
 

@@ -1,4 +1,4 @@
-# @mdsv/arc Documentation Site
+# @mdrv/arc Documentation Site
 
 Built with Astro + Svelte 5, deployed to GitHub Pages at https://mdrv.github.io/arc/
 
@@ -66,7 +66,7 @@ The site includes interactive Svelte 5 components that showcase the router in ac
 - `RouterDemo.svelte` - Live navigation example with transitions
 - Demo pages in `components/demo-pages/`
 
-These components import `@mdsv/arc` directly from the source code via Vite alias.
+These components import `@mdrv/arc` directly from the source code via Vite alias.
 
 ## Configuration
 

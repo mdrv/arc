@@ -2,7 +2,7 @@
 
 ## Purpose
 
-**@mdsv/arc** is a modern, lightweight client-side router for Svelte 5 with native View Transition API support and advanced animation control.
+**@mdrv/arc** is a modern, lightweight client-side router for Svelte 5 with native View Transition API support and advanced animation control.
 
 ### Goals
 

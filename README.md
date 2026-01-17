@@ -1,4 +1,4 @@
-# @mdsv/arc 🚀
+# @mdrv/arc 🚀
 
 A modern, lightweight client-side router for Svelte 5 with **View Transition API** support and advanced animation control.
 
@@ -41,7 +41,7 @@ A modern, lightweight client-side router for Svelte 5 with **View Transition API
 ## Installation
 
 ```bash
-npm install @mdsv/arc
+npm install @mdrv/arc
 ```
 
 ## Quick Start
@@ -50,7 +50,7 @@ npm install @mdsv/arc
 
 ```ts
 // routes.ts
-import { createRouter } from '@mdsv/arc'
+import { createRouter } from '@mdrv/arc'
 import About from './pages/about.svelte'
 import Home from './pages/home.svelte'
 
@@ -68,7 +68,7 @@ export const { navigate, route, isActive } = createRouter({
 ```svelte
 <!-- App.svelte -->
 <script>
-	import { generateTransitionCSS, Router } from '@mdsv/arc'
+	import { generateTransitionCSS, Router } from '@mdrv/arc'
 </script>
 
 <svelte:head>
@@ -84,7 +84,7 @@ export const { navigate, route, isActive } = createRouter({
 
 ```svelte
 <script>
-	import { navigate, transitionPresets } from '@mdsv/arc'
+	import { navigate, transitionPresets } from '@mdrv/arc'
 </script>
 
 <!-- Simple fade transition -->
@@ -109,7 +109,7 @@ export const { navigate, route, isActive } = createRouter({
 ### Basic Usage
 
 ```ts
-import { navigate, transitionPresets } from '@mdsv/arc'
+import { navigate, transitionPresets } from '@mdrv/arc'
 
 // Fade transition
 navigate('/about', {
@@ -224,7 +224,7 @@ For shared element transitions:
 
 ```svelte
 <script>
-	import { viewTransitionName } from '@mdsv/arc'
+	import { viewTransitionName } from '@mdrv/arc'
 </script>
 
 <!-- Image morphs between pages -->
@@ -276,7 +276,7 @@ const router = createRouter({
 
 ```svelte
 <script>
-	import { createRouter } from '@mdsv/arc'
+	import { createRouter } from '@mdrv/arc'
 
 	const { supportsViewTransitions } = createRouter({ routes })
 </script>
@@ -291,7 +291,7 @@ const router = createRouter({
 ## Transition Presets Reference
 
 ```ts
-import { transitionPresets } from '@mdsv/arc'
+import { transitionPresets } from '@mdrv/arc'
 
 // Available presets:
 transitionPresets.fade() // Simple crossfade
@@ -383,7 +383,7 @@ To use View Transitions, add the CSS:
 ### Simple SPA
 
 ```ts
-import { createRouter, generateTransitionCSS } from '@mdsv/arc'
+import { createRouter, generateTransitionCSS } from '@mdrv/arc'
 
 const { navigate, route } = createRouter({
 	routes: {
@@ -442,7 +442,7 @@ const router = createRouter({
 
 ## Testing
 
-@mdsv/arc includes a comprehensive test suite with **67 passing tests** covering core functionality.
+@mdrv/arc includes a comprehensive test suite with **67 passing tests** covering core functionality.
 
 ### Running Tests
 

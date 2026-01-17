@@ -4,7 +4,7 @@
 
 ### Why tsdown
 
-We use `tsdown` for building @mdsv/arc because:
+We use `tsdown` for building @mdrv/arc because:
 
 - **TypeScript-first**: Built specifically for TypeScript libraries
 - **Type declarations**: Automatically generates `.d.ts` files with proper resolution

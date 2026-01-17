@@ -18,7 +18,7 @@ export default defineConfig({
 	vite: {
 		resolve: {
 			alias: {
-				'@mdsv/arc': path.resolve(__dirname, '../src/index.ts'),
+				'@mdrv/arc': path.resolve(__dirname, '../src/index.ts'),
 			},
 		},
 	},

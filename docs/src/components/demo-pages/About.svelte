@@ -3,7 +3,7 @@
 
 <div class='page'>
 	<h2>About Page</h2>
-	<p>@mdsv/arc is a modern, lightweight router for Svelte 5.</p>
+	<p>@mdrv/arc is a modern, lightweight router for Svelte 5.</p>
 	<ul>
 		<li>Native View Transition API support</li>
 		<li>Dual-tree fallback for older browsers</li>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The @mdsv/arc documentation is built with **Astro + Svelte 5** and deployed to **GitHub Pages** at
+The @mdrv/arc documentation is built with **Astro + Svelte 5** and deployed to **GitHub Pages** at
 https://mdrv.github.io/arc/
 
 ## Why Astro?
@@ -53,7 +53,7 @@ docs/
   vite: {
     resolve: {
       alias: {
-        '@mdsv/arc': '../src/index.ts'  // Import from source
+        '@mdrv/arc': '../src/index.ts'  // Import from source
       }
     }
   }
@@ -107,7 +107,7 @@ Permissions needed:
 
 ### How It Works
 
-1. **Import library**: `import { createRouter } from '@mdsv/arc'`
+1. **Import library**: `import { createRouter } from '@mdrv/arc'`
 2. **Create Svelte component**: Use router in component
 3. **Hydrate on client**: `<RouterDemo client:load />`
 4. **SSR-safe**: Library has guards for `window`/`document`
@@ -123,7 +123,7 @@ Shows live navigation with:
 
 The component imports the router directly and works because:
 
-- Vite alias resolves `@mdsv/arc` to source code
+- Vite alias resolves `@mdrv/arc` to source code
 - Router has SSR guards for `getLocation()`
 - Astro hydrates component on client
 

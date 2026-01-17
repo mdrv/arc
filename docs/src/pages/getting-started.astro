@@ -2,21 +2,21 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title='Getting Started - @mdsv/arc'>
+<Layout title='Getting Started - @mdrv/arc'>
 	<h1>Getting Started</h1>
 
 	<section>
 		<h2>Installation</h2>
-		<pre><code>bun add @mdsv/arc</code></pre>
+		<pre><code>bun add @mdrv/arc</code></pre>
 		<p>or with npm:</p>
-		<pre><code>npm install @mdsv/arc</code></pre>
+		<pre><code>npm install @mdrv/arc</code></pre>
 	</section>
 
 	<section>
 		<h2>Basic Setup</h2>
 		<h3>1. Define Your Routes</h3>
 		<pre><code>{`// routes.ts
-import { createRouter } from '@mdsv/arc'
+import { createRouter } from '@mdrv/arc'
 import Home from './pages/home.svelte'
 import About from './pages/about.svelte'
 
@@ -31,7 +31,7 @@ export const { navigate, route, isActive } = createRouter({
 		<h3>2. Add Router to Your App</h3>
 		<pre><code>{`<!-- App.svelte -->
 <script>
-  import { Router, generateTransitionCSS } from '@mdsv/arc'
+  import { Router, generateTransitionCSS } from '@mdrv/arc'
 </script>
 
 <svelte:head>
@@ -42,7 +42,7 @@ export const { navigate, route, isActive } = createRouter({
 
 		<h3>3. Navigate with Transitions</h3>
 		<pre><code>{`<script>
-  import { navigate, transitionPresets } from '@mdsv/arc'
+  import { navigate, transitionPresets } from '@mdrv/arc'
 </script>
 
 <!-- Simple link -->
