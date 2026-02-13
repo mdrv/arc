@@ -1,8 +1,11 @@
 # integration-tests Specification
 
 ## Purpose
+
 TBD - created by archiving change add-comprehensive-test-suite. Update Purpose after archive.
+
 ## Requirements
+
 ### Requirement: The project MUST have Navigation Flow Tests
 
 Complete Complete Complete navigation flows must MUST SHALL be tested to ensure the router correctly handles various navigation scenarios.
@@ -364,4 +367,3 @@ The router SHALL correctly integrate with browser history APIs.
 - Read the new location
 - Navigate to the correct route
 - Update all reactive state
-

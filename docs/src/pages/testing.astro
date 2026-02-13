@@ -1,21 +1,25 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Testing - @mdrv/arc">
-	<div class="container">
+<Layout title='Testing - @mdrv/arc'>
+	<div class='container'>
 		<h1>Testing</h1>
-		
-		<p class="intro">
-			@mdrv/arc includes a comprehensive test suite to ensure reliability and prevent regressions.
-			This page documents the testing infrastructure and available tests.
+
+		<p class='intro'>
+			@mdrv/arc includes a comprehensive test suite to ensure reliability and
+			prevent regressions. This page documents the testing infrastructure and
+			available tests.
 		</p>
 
 		<section>
 			<h2>Running Tests</h2>
-			
-			<p>The project uses Vitest as the test runner. You can run tests in several ways:</p>
-			
+
+			<p>
+				The project uses Vitest as the test runner. You can run tests in several
+				ways:
+			</p>
+
 			<pre><code># Run all tests once
 bun run test:run
 
@@ -31,18 +35,24 @@ bun run test:coverage</code></pre>
 
 		<section>
 			<h2>Test Infrastructure</h2>
-			
+
 			<p>The test suite is built with modern tooling:</p>
-			
+
 			<ul>
-				<li><strong>Vitest</strong> - Fast, modern test runner with native ESM support</li>
-				<li><strong>happy-dom</strong> - Lightweight DOM environment for browser API testing</li>
+				<li>
+					<strong>Vitest</strong> - Fast, modern test runner with native ESM
+					support
+				</li>
+				<li>
+					<strong>happy-dom</strong> - Lightweight DOM environment for browser
+					API testing
+				</li>
 				<li><strong>TypeScript</strong> - Full type safety in tests</li>
 				<li><strong>Coverage</strong> - Built-in coverage reporting with v8</li>
 			</ul>
 
 			<p>Test files are organized in the <code>tests/</code> directory:</p>
-			
+
 			<pre><code>tests/
 ├── unit/              # Unit tests for individual functions
 ├── integration/       # Integration tests (future)
@@ -52,8 +62,11 @@ bun run test:coverage</code></pre>
 
 		<section>
 			<h2>Available Tests</h2>
-			
-			<p>The test suite currently includes <strong>67 passing tests</strong> across multiple categories:</p>
+
+			<p>
+				The test suite currently includes <strong>67 passing tests</strong>
+				across multiple categories:
+			</p>
 
 			<h3>Infrastructure Tests (4 tests)</h3>
 			<p><code>tests/unit/sanity.test.ts</code></p>
@@ -103,7 +116,9 @@ bun run test:coverage</code></pre>
 			<p><code>tests/unit/route-validation.test.ts</code></p>
 			<ul>
 				<li>getRoutePaths() - Extracting all route paths</li>
-				<li>sortRoutes() - Route priority sorting (static > dynamic > wildcard)</li>
+				<li>
+					sortRoutes() - Route priority sorting (static > dynamic > wildcard)
+				</li>
 				<li>validateRoutes() - Route configuration validation</li>
 				<li>Warning detection for conflicting routes</li>
 			</ul>
@@ -111,9 +126,9 @@ bun run test:coverage</code></pre>
 
 		<section>
 			<h2>Test Coverage</h2>
-			
+
 			<p>The following core functions have comprehensive test coverage:</p>
-			
+
 			<ul>
 				<li>✅ getLocation() - Location information retrieval</li>
 				<li>✅ join() - Path joining utility</li>
@@ -130,7 +145,7 @@ bun run test:coverage</code></pre>
 
 		<section>
 			<h2>Writing Tests</h2>
-			
+
 			<p>When contributing to @mdrv/arc, follow these testing guidelines:</p>
 
 			<h3>Mock Components</h3>
@@ -140,7 +155,10 @@ bun run test:coverage</code></pre>
 const TestComponent = function() &#123;&#125; as unknown as Component</code></pre>
 
 			<h3>Browser API Mocks</h3>
-			<p>Browser APIs are mocked in <code>tests/setup.ts</code> and reset before each test:</p>
+			<p>
+				Browser APIs are mocked in <code>tests/setup.ts</code> and reset before
+				each test:
+			</p>
 			<ul>
 				<li><code>document.startViewTransition</code> - View Transition API</li>
 				<li><code>globalThis.location</code> - Location object</li>
@@ -160,24 +178,36 @@ const TestComponent = function() &#123;&#125; as unknown as Component</code></pr
 
 		<section>
 			<h2>Continuous Integration</h2>
-			
-			<p>Tests run automatically on every push and pull request via GitHub Actions (when configured).
-			This ensures code quality and prevents regressions before merging changes.</p>
+
+			<p>
+				Tests run automatically on every push and pull request via GitHub
+				Actions (when configured). This ensures code quality and prevents
+				regressions before merging changes.
+			</p>
 		</section>
 
 		<section>
 			<h2>Known Limitations</h2>
-			
+
 			<ul>
-				<li><strong>Parentheses route grouping</strong> - Feature needs additional testing investigation</li>
-				<li><strong>Integration tests</strong> - Future enhancement for complete routing flows</li>
-				<li><strong>E2E tests</strong> - Not currently implemented (library-focused, not application-focused)</li>
+				<li>
+					<strong>Parentheses route grouping</strong> - Feature needs additional
+					testing investigation
+				</li>
+				<li>
+					<strong>Integration tests</strong> - Future enhancement for complete
+					routing flows
+				</li>
+				<li>
+					<strong>E2E tests</strong> - Not currently implemented
+					(library-focused, not application-focused)
+				</li>
 			</ul>
 		</section>
 
 		<section>
 			<h2>Contributing</h2>
-			
+
 			<p>When adding new features:</p>
 			<ol>
 				<li>Write tests first (TDD approach recommended)</li>
@@ -190,72 +220,72 @@ const TestComponent = function() &#123;&#125; as unknown as Component</code></pr
 </Layout>
 
 <style>
-	.container {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem;
+}
 
-	.intro {
-		font-size: 1.125rem;
-		color: #666;
-		margin-bottom: 2rem;
-	}
+.intro {
+	font-size: 1.125rem;
+	color: #666;
+	margin-bottom: 2rem;
+}
 
-	section {
-		margin-bottom: 3rem;
-	}
+section {
+	margin-bottom: 3rem;
+}
 
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
-	}
+h1 {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+}
 
-	h2 {
-		font-size: 1.75rem;
-		margin-top: 2rem;
-		margin-bottom: 1rem;
-		border-bottom: 2px solid #eee;
-		padding-bottom: 0.5rem;
-	}
+h2 {
+	font-size: 1.75rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	border-bottom: 2px solid #eee;
+	padding-bottom: 0.5rem;
+}
 
-	h3 {
-		font-size: 1.25rem;
-		margin-top: 1.5rem;
-		margin-bottom: 0.75rem;
-	}
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.5rem;
+	margin-bottom: 0.75rem;
+}
 
-	pre {
-		background: #f5f5f5;
-		padding: 1rem;
-		border-radius: 4px;
-		overflow-x: auto;
-		margin: 1rem 0;
-	}
+pre {
+	background: #f5f5f5;
+	padding: 1rem;
+	border-radius: 4px;
+	overflow-x: auto;
+	margin: 1rem 0;
+}
 
-	code {
-		background: #f5f5f5;
-		padding: 0.2rem 0.4rem;
-		border-radius: 3px;
-		font-family: 'Courier New', monospace;
-		font-size: 0.9em;
-	}
+code {
+	background: #f5f5f5;
+	padding: 0.2rem 0.4rem;
+	border-radius: 3px;
+	font-family: 'Courier New', monospace;
+	font-size: 0.9em;
+}
 
-	pre code {
-		background: none;
-		padding: 0;
-	}
+pre code {
+	background: none;
+	padding: 0;
+}
 
-	ul, ol {
-		margin: 1rem 0;
-		padding-left: 2rem;
-	}
+ul, ol {
+	margin: 1rem 0;
+	padding-left: 2rem;
+}
 
-	li {
-		margin: 0.5rem 0;
-	}
+li {
+	margin: 0.5rem 0;
+}
 
-	strong {
-		font-weight: 600;
-	}
+strong {
+	font-weight: 600;
+}
 </style>

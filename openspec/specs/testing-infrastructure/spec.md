@@ -1,8 +1,11 @@
 # testing-infrastructure Specification
 
 ## Purpose
+
 TBD - created by archiving change add-comprehensive-test-suite. Update Purpose after archive.
+
 ## Requirements
+
 ### Requirement: The project MUST have Vitest Test Runner Configuration
 
 The project SHALL have Vitest configured as the test runner with modern ESM support and TypeScript integration.
@@ -161,4 +164,3 @@ The project SHALL configure code coverage reporting to track test coverage metri
 - `tests/**`
 - `**/*.config.ts`
 - `docs/**`
-

@@ -1,8 +1,11 @@
 # unit-tests Specification
 
 ## Purpose
+
 TBD - created by archiving change add-comprehensive-test-suite. Update Purpose after archive.
+
 ## Requirements
+
 ### Requirement: The project MUST have Path Utility Tests
 
 All All path manipulation utilities MUST SHALL have comprehensive unit tests covering normal and edge cases.
@@ -321,4 +324,3 @@ detectNavigationDirection('/users', '/about', true) // → 'replace'
 - Correct duration value
 - Appropriate easing function
 - Valid CSS class names
-
